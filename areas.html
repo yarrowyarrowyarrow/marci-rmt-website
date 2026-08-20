@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Areas Served · Mobile Massage in Edmonton & Region · Marci.RMT</title>
+<meta name="description" content="8 km in-home service radius from south-central Edmonton, with greater Edmonton available for a flat $25 travel fee. Event work travels up to 400 km." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Areas Served · Marci.RMT" />
+<meta property="og:description" content="Mobile massage coverage map for Edmonton, AB." />
+<meta property="og:image" content="assets/travel-radius-map.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#5a6b4f" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="apple-touch-icon" href="favicon.svg" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html"><span>Marci</span><span class="dot">.</span><span>RMT</span></a>
+    <ul class="nav-links" id="nav-links">
+      <li class="has-dropdown"><a href="services.html">Services</a>
+        <ul class="dropdown">
+          <li><a href="services.html"><strong>In-Home Massage</strong><small>60 / 75 / 90 / 120 min · table</small></a></li>
+          <li><a href="events.html"><strong>Event Massage</strong><small>Chair · 5 to 20 min · groups</small></a></li>
+          <li><a href="services.html#signature"><strong>Signature Neck, Scalp & Face</strong><small>Available as add-on</small></a></li>
+          <li><a href="first-visit.html"><strong>Your First Visit</strong><small>What to expect, step by step</small></a></li>
+        </ul>
+      </li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="areas.html" class="active">Areas Served</a></li>
+      <li><a href="faq.html">Policies & FAQ</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="contact.html#book">Book →</a>
+    <button class="menu-toggle" onclick="document.getElementById('nav-links').classList.toggle('open')">☰</button>
+  </nav>
+</header>
+
+<main id="main"><section class="page-hero">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="sep">›</span><span class="current" aria-current="page">Areas Served</span></nav>
+    <span class="eyebrow">Areas Served</span>
+    <h1>Where I <em>travel.</em></h1>
+    <p class="lede">In-home appointments are based out of south-central Edmonton. Event work travels much further. Both are flat-priced, no hidden fees once you confirm.</p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: clamp(40px, 6vw, 80px); align-items: stretch;">
+      <!-- Map -->
+      <div style="background: var(--paper-light); border: 1px solid var(--rule-soft); position: relative; overflow: hidden; min-height: 480px;">
+        <svg viewBox="0 0 500 400" style="width: 100%; height: 100%; display: block;" role="img" aria-label="Stylized map of the Edmonton region showing the 8 km in-home service radius and surrounding communities">
+          <defs>
+            <pattern id="grid2" width="25" height="25" patternUnits="userSpaceOnUse"><path d="M 25 0 L 0 0 0 25" fill="none" stroke="#c8c2b3" stroke-width="0.4" opacity="0.4"/></pattern>
+          </defs>
+          <rect width="500" height="400" fill="url(#grid2)"/>
+          <!-- North Saskatchewan River: enters SW near Devon, bends east through Edmonton, exits NE past Fort Saskatchewan -->
+          <path d="M 150 330 Q 200 288 222 248 Q 240 214 262 196 Q 292 176 310 150 Q 328 124 356 78" stroke="#8a9a7d" stroke-width="5" fill="none" opacity="0.5" stroke-linecap="round"/>
+          <text x="299" y="132" font-family="Inter, sans-serif" font-size="8.5" fill="#5a6b4f" font-style="italic" opacity="0.75" transform="rotate(-56 299 132)">North Saskatchewan</text>
+          <!-- 25 km reference ring -->
+          <circle cx="250" cy="200" r="110" fill="none" stroke="#5a6b4f" stroke-width="0.6" stroke-dasharray="3 5" opacity="0.35"/>
+          <text x="250" y="84" font-family="Inter, sans-serif" font-size="7.5" fill="#5a6b4f" text-anchor="middle" letter-spacing="2" opacity="0.65">25 KM</text>
+          <!-- 8 km in-home radius -->
+          <circle cx="250" cy="200" r="35" fill="#5a6b4f" fill-opacity="0.12" stroke="#5a6b4f" stroke-width="1.4"/>
+          <text x="250" y="250" font-family="Inter, sans-serif" font-size="8" fill="#5a6b4f" text-anchor="middle" letter-spacing="2" font-weight="500">8 KM IN-HOME</text>
+          <!-- Base: south-central Edmonton -->
+          <circle cx="250" cy="200" r="4.5" fill="#3f4a37"/>
+          <text x="250" y="188" font-family="Cormorant Garamond, serif" font-size="15" fill="#3f4a37" text-anchor="middle">Edmonton</text>
+          <!-- Surrounding communities, placed to scale (approx. 4.4 px per km) -->
+          <circle cx="212" cy="146" r="2.5" fill="#7a7a72"/><text x="205" y="140" font-family="Inter, sans-serif" font-size="7.5" fill="#7a7a72" text-anchor="end">St. Albert</text>
+          <circle cx="334" cy="107" r="2.5" fill="#7a7a72"/><text x="341" y="105" font-family="Inter, sans-serif" font-size="7.5" fill="#7a7a72">Fort Saskatchewan</text>
+          <circle cx="302" cy="200" r="2.5" fill="#7a7a72"/><text x="309" y="203" font-family="Inter, sans-serif" font-size="7.5" fill="#7a7a72">Sherwood Park</text>
+          <circle cx="128" cy="190" r="2.5" fill="#7a7a72"/><text x="128" y="182" font-family="Inter, sans-serif" font-size="7.5" fill="#7a7a72" text-anchor="middle">Spruce Grove</text>
+          <circle cx="104" cy="190" r="2.5" fill="#7a7a72"/><text x="97" y="203" font-family="Inter, sans-serif" font-size="7.5" fill="#7a7a72" text-anchor="middle">Stony Plain</text>
+          <circle cx="183" cy="278" r="2.5" fill="#7a7a72"/><text x="176" y="281" font-family="Inter, sans-serif" font-size="7.5" fill="#7a7a72" text-anchor="end">Devon</text>
+          <circle cx="273" cy="283" r="2.5" fill="#7a7a72"/><text x="280" y="286" font-family="Inter, sans-serif" font-size="7.5" fill="#7a7a72">Beaumont</text>
+          <circle cx="236" cy="327" r="2.5" fill="#7a7a72"/><text x="236" y="340" font-family="Inter, sans-serif" font-size="7.5" fill="#7a7a72" text-anchor="middle">Leduc</text>
+          <!-- Regional inset: 150 km event radius -->
+          <g transform="translate(346 236)">
+            <rect x="0" y="0" width="140" height="150" fill="#faf8f3" stroke="#c8c2b3" stroke-width="0.8"/>
+            <circle cx="70" cy="62" r="52" fill="none" stroke="#5a6b4f" stroke-width="0.7" stroke-dasharray="3 4" opacity="0.6"/>
+            <circle cx="70" cy="62" r="3" fill="#3f4a37"/>
+            <text x="70" y="55" font-family="Cormorant Garamond, serif" font-size="9" fill="#3f4a37" text-anchor="middle">Edmonton</text>
+            <circle cx="85" cy="80" r="1.6" fill="#7a7a72"/><text x="89" y="83" font-family="Inter, sans-serif" font-size="6" fill="#7a7a72">Camrose</text>
+            <circle cx="93" cy="38" r="1.6" fill="#7a7a72"/><text x="97" y="40" font-family="Inter, sans-serif" font-size="6" fill="#7a7a72">Smoky Lake</text>
+            <circle cx="20" cy="37" r="1.6" fill="#7a7a72"/><text x="16" y="34" font-family="Inter, sans-serif" font-size="6" fill="#7a7a72" text-anchor="end">Whitecourt</text>
+            <circle cx="62" cy="110" r="1.6" fill="#7a7a72"/><text x="66" y="113" font-family="Inter, sans-serif" font-size="6" fill="#7a7a72">Red Deer</text>
+            <text x="70" y="138" font-family="Inter, sans-serif" font-size="6.5" fill="#5a6b4f" text-anchor="middle" letter-spacing="1.6">150 KM EVENT RADIUS</text>
+          </g>
+        </svg>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 28px;">
+        <div style="border-left: 3px solid var(--sage); padding-left: 20px;">
+          <p class="eyebrow" style="margin-bottom: 10px;">In-Home · Included</p>
+          <h3 style="font-size: 1.5rem; margin-bottom: 10px;">8 km of south-central Edmonton</h3>
+          <p style="color: var(--ink-soft); font-size: 0.95rem;">Travel is built into the session price for clients within this circle.</p>
+        </div>
+        <div style="border-left: 3px solid var(--sage-soft); padding-left: 20px;">
+          <p class="eyebrow" style="margin-bottom: 10px;">In-Home · $25 fee</p>
+          <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Greater Edmonton, approved</h3>
+          <p style="color: var(--ink-soft); font-size: 0.95rem;">A flat $25 fee for approved locations beyond 8 km. Shown in checkout before you confirm.</p>
+        </div>
+        <div style="border-left: 3px solid var(--sage-pale); padding-left: 20px;">
+          <p class="eyebrow" style="margin-bottom: 10px;">Events · Up to 150 km</p>
+          <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Travel included for events</h3>
+          <p style="color: var(--ink-soft); font-size: 0.95rem;">Travel up to 150 km is included in event hourly rates. 400 km available for multi-day festivals.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="paper-block" style="border-top: 1px solid var(--rule-soft);">
+  <div class="container">
+    <div class="section-head">
+      <div><span class="eyebrow">Neighbourhoods</span><h2 style="margin-top: 18px;">In-home, <em>by neighbourhood.</em></h2></div>
+      <p class="lede">A non-exhaustive list of neighbourhoods inside the 8 km radius. Don't see yours? Drop me a line, most of greater Edmonton qualifies for the flat $25 fee.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;">
+      <div>
+        <p class="eyebrow" style="margin-bottom: 14px;">South-Central</p>
+        <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; font-family: var(--serif); font-size: 1.15rem;">
+          <li>Bonnie Doon</li><li>Strathcona</li><li>Garneau</li><li>Ritchie</li><li>Mill Creek</li><li>Hazeldean</li><li>Old Strathcona</li><li>Rossdale</li><li>Avonmore</li><li>Parkallen</li><li>Pleasantview</li><li>Malmo Plains</li>
+        </ul>
+      </div>
+      <div>
+        <p class="eyebrow" style="margin-bottom: 14px;">South-West</p>
+        <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; font-family: var(--serif); font-size: 1.15rem;">
+          <li>Belgravia</li><li>Windsor Park</li><li>McKernan</li><li>Allendale</li><li>Queen Alexandra</li><li>Empire Park</li><li>Lansdowne</li><li>Grandview Heights</li><li>Blue Quill</li><li>Aspen Gardens</li><li>Laurier Heights</li><li>Rio Terrace</li><li>Westbrook Estates</li><li>Greenfield</li><li>Royal Gardens</li><li>Ramsay Heights</li>
+        </ul>
+      </div>
+      <div>
+        <p class="eyebrow" style="margin-bottom: 14px;">East</p>
+        <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; font-family: var(--serif); font-size: 1.15rem;">
+          <li>Cloverdale</li><li>Riverdale</li><li>Holyrood</li><li>King Edward Park</li><li>Idylwylde</li><li>Forest Heights</li><li>Gold Bar</li><li>Capilano</li><li>Ottewell</li><li>Terrace Heights</li><li>Fulton Place</li><li>Strathearn</li>
+        </ul>
+      </div>
+      <div>
+        <p class="eyebrow" style="margin-bottom: 14px;">Outside (with fee)</p>
+        <ul style="list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; font-family: var(--serif); font-size: 1.15rem;">
+          <li>St. Albert</li><li>Sherwood Park</li><li>Spruce Grove</li><li>Fort Saskatchewan</li><li>Leduc</li><li>Beaumont</li><li>Windermere</li><li>Terwillegar</li><li>Riverbend</li><li>Ardrossan</li><li>Stony Plain</li><li>Devon</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid" style="border-top: 0; margin-top: 0; padding-top: 0;">
+      <div><a class="brand" href="index.html" style="color: var(--paper-light); font-size: 1.7rem;"><span>Marci</span><span style="color: var(--sage-pale);">.</span><span>RMT</span></a><p style="font-family: var(--serif); font-style: italic; color: var(--sage-pale); margin-top: 8px;">Clinical Care, Anywhere.</p></div>
+      <div><h5>Services</h5><ul><li><a href="services.html">In-home</a></li><li><a href="events.html">Events</a></li></ul></div>
+      <div><h5>About</h5><ul><li><a href="about.html">Therapist</a></li><li><a href="areas.html">Areas</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+      <div><h5>Contact</h5><ul><li><a href="tel:7807773133">780-777-3133</a></li><li><a href="mailto:marci.makarewicz@gmail.com">Email</a></li></ul></div>
+    </div>
+    <div class="footer-fine"><span>© 2026 Marci.RMT</span><span>MTAA Member · Direct billing</span></div>
+  </div>
+</footer>
+
+<a class="mobile-book" href="contact.html#book-home">Book <span class="arr">→</span></a>
+
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Book a Session & Contact · Marci.RMT Edmonton</title>
+<meta name="description" content="Request an in-home massage appointment, an event chair-massage quote, or a gift card. Direct lines for phone, text, email, and Instagram." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Book & Contact · Marci.RMT" />
+<meta property="og:description" content="Reach out to book or ask a question." />
+<meta property="og:image" content="assets/business-card-front.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="theme-color" content="#5a6b4f" />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="apple-touch-icon" href="favicon.svg" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  .tab-row { display: flex; gap: 4px; margin-bottom: 36px; border-bottom: 1px solid var(--rule-soft); }
+  .tab { padding: 16px 24px; font-family: var(--sans); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mute); border-bottom: 2px solid transparent; cursor: pointer; background: transparent; border-left: 0; border-right: 0; border-top: 0; transition: all 0.2s; margin-bottom: -1px; }
+  .tab:hover { color: var(--ink); }
+  .tab.active { color: var(--sage-deep); border-bottom-color: var(--sage); }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+  .field { margin-bottom: 20px; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  textarea { min-height: 120px; resize: vertical; }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html"><span>Marci</span><span class="dot">.</span><span>RMT</span></a>
+    <ul class="nav-links" id="nav-links">
+      <li class="has-dropdown"><a href="services.html">Services</a>
+        <ul class="dropdown">
+          <li><a href="services.html"><strong>In-Home Massage</strong><small>60 / 75 / 90 / 120 min · table</small></a></li>
+          <li><a href="events.html"><strong>Event Massage</strong><small>Chair · 5 to 20 min · groups</small></a></li>
+          <li><a href="services.html#signature"><strong>Signature Neck, Scalp & Face</strong><small>Available as add-on</small></a></li>
+          <li><a href="first-visit.html"><strong>Your First Visit</strong><small>What to expect, step by step</small></a></li>
+        </ul>
+      </li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="areas.html">Areas Served</a></li>
+      <li><a href="faq.html">Policies & FAQ</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <a class="nav-cta" href="#book">Book →</a>
+    <button class="menu-toggle" onclick="document.getElementById('nav-links').classList.toggle('open')">☰</button>
+  </nav>
+</header>
+
+<main id="main"><section class="page-hero">
+  <div class="container">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="sep">›</span><span class="current" aria-current="page">Contact</span></nav>
+    <span class="eyebrow">Booking & Contact</span>
+    <h1>Let's <em>book it.</em></h1>
+    <p class="lede">Three ways to reach me, depending on what you need. Online booking runs through Jane, where you'll also complete your health history and consent forms before the first visit.</p>
+  </div>
+</section>
+
+<section id="book" style="padding-top: clamp(40px, 6vw, 64px);">
+  <div class="container" style="display: grid; grid-template-columns: 1fr 380px; gap: clamp(40px, 6vw, 80px); align-items: start;">
+
+    <!-- FORM AREA -->
+    <div>
+      <div class="tab-row" role="tablist">
+        <button class="tab active" data-tab="home" id="book-home">In-Home Massage</button>
+        <button class="tab" data-tab="event" id="book-event">Event Quote</button>
+        <button class="tab" data-tab="general" id="gift">Gift / Other</button>
+      </div>
+
+      <!-- IN-HOME PANE -->
+      <div class="tab-pane active" data-pane="home">
+        <h2 style="font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 12px;">Request an in-home appointment.</h2>
+        <p style="color: var(--ink-soft); margin-bottom: 32px;">Fill in a few details and I'll come back within one business day with available times. New clients will receive a health-history form to complete before the first session.</p>
+
+        <form>
+          <div class="field-row">
+            <div class="field"><label>Your name</label><input type="text" required placeholder="First and last" /></div>
+            <div class="field"><label>Pronouns <span style="text-transform: none; opacity: 0.6;">(optional)</span></label><input type="text" placeholder="they/them, she/her, …" /></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label>Email</label><input type="email" required placeholder="you@email.com" /></div>
+            <div class="field"><label>Phone</label><input type="tel" required placeholder="(780) 555-0000" /></div>
+          </div>
+          <div class="field"><label>Address (city / neighbourhood is fine)</label><input type="text" placeholder="Strathcona, Edmonton" /></div>
+          <div class="field-row">
+            <div class="field"><label>Session length</label><select><option>60 minutes · $140</option><option selected>75 minutes · $175</option><option>90 minutes · $200</option><option>120 minutes · $240</option></select></div>
+            <div class="field"><label>Preferred days</label><select><option>Weekdays</option><option>Evenings</option><option>Weekends</option><option>Flexible</option></select></div>
+          </div>
+          <div class="field"><label>Notes, focus areas, history, T1D, anything I should know</label><textarea placeholder="A line or two is plenty."></textarea></div>
+          <button type="button" class="btn" onclick="alert('Form is a mockup. Submission will route through Jane at launch.')"><span>Send request</span><span class="arr">→</span></button>
+          <p style="font-size: 0.78rem; color: var(--ink-mute); margin-top: 16px;">Replies typically within one business day. By submitting you agree to the cancellation policy.</p>
+        </form>
+      </div>
+
+      <!-- EVENT PANE -->
+      <div class="tab-pane" data-pane="event">
+        <h2 style="font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 12px;">Request an event quote.</h2>
+        <p style="color: var(--ink-soft); margin-bottom: 32px;">Tell me about your event and I'll come back with a tailored proposal, usually within one business day. Most quotes include travel, equipment, and digital intake.</p>
+
+        <form>
+          <div class="field-row">
+            <div class="field"><label>Your name</label><input type="text" required /></div>
+            <div class="field"><label>Organization</label><input type="text" /></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label>Email</label><input type="email" required /></div>
+            <div class="field"><label>Phone</label><input type="tel" /></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label>Event type</label><select><option>Corporate wellness day</option><option>Wedding</option><option>Festival / community event</option><option>Private party</option><option>Other</option></select></div>
+            <div class="field"><label>Format</label><select><option>Hired by hour (free for guests)</option><option>Pay-per-minute booth</option><option>Not sure yet</option></select></div>
+          </div>
+          <div class="field-row">
+            <div class="field"><label>Date</label><input type="date" /></div>
+            <div class="field"><label>Approx. guest count</label><input type="number" placeholder="e.g. 80" /></div>
+          </div>
+          <div class="field"><label>Location (city)</label><input type="text" placeholder="Edmonton, AB" /></div>
+          <div class="field"><label>Anything else?</label><textarea placeholder="Run-of-show, branding requests, accessibility needs, etc."></textarea></div>
+          <button type="button" class="btn" onclick="alert('Form is a mockup. Live submission at launch.')"><span>Request quote</span><span class="arr">→</span></button>
+        </form>
+      </div>
+
+      <!-- GENERAL -->
+      <div class="tab-pane" data-pane="general">
+        <h2 style="font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 12px;">Gift cards & general questions.</h2>
+        <p style="color: var(--ink-soft); margin-bottom: 32px;">Buying a gift card, checking on direct billing, or asking something else? Drop a note here.</p>
+
+        <form>
+          <div class="field-row">
+            <div class="field"><label>Your name</label><input type="text" required /></div>
+            <div class="field"><label>Email</label><input type="email" required /></div>
+          </div>
+          <div class="field"><label>Topic</label><select><option>Gift card purchase</option><option>Direct billing question</option><option>Press / media</option><option>Other</option></select></div>
+          <div class="field"><label>Message</label><textarea required></textarea></div>
+          <button type="button" class="btn" onclick="alert('Form is a mockup.')"><span>Send</span><span class="arr">→</span></button>
+        </form>
+      </div>
+    </div>
+
+    <!-- SIDE PANEL -->
+    <aside style="background: var(--paper-light); border: 1px solid var(--rule-soft); padding: 36px; position: sticky; top: 100px;">
+      <p class="eyebrow" style="margin-bottom: 14px;">Direct line</p>
+      <div style="display: grid; gap: 20px;">
+        <a href="tel:7807773133" style="display: block;">
+          <p style="font-size: 0.74rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); margin: 0 0 4px;">Phone / text</p>
+          <p style="font-family: var(--serif); font-size: 1.5rem; color: var(--ink); margin: 0; font-variant-numeric: lining-nums tabular-nums; font-feature-settings: 'lnum' 1, 'tnum' 1; letter-spacing: 0.01em;">780-777-3133</p>
+        </a>
+        <a href="mailto:marci.makarewicz@gmail.com" style="display: block;">
+          <p style="font-size: 0.74rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); margin: 0 0 4px;">Email</p>
+          <p style="font-family: var(--serif); font-size: 1.15rem; color: var(--ink); margin: 0; word-break: break-all;">marci.makarewicz@gmail.com</p>
+        </a>
+        <a href="https://instagram.com/marci.rmt" style="display: block;">
+          <p style="font-size: 0.74rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-mute); margin: 0 0 4px;">Instagram</p>
+          <p style="font-family: var(--serif); font-size: 1.5rem; color: var(--ink); margin: 0;">@marci.rmt</p>
+        </a>
+      </div>
+
+      <div style="border-top: 1px solid var(--rule-soft); margin-top: 28px; padding-top: 24px;">
+        <p class="eyebrow" style="margin-bottom: 12px;">Hours</p>
+        <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.95rem; color: var(--ink-soft);">
+          <li style="display: flex; justify-content: space-between; padding: 4px 0;"><span>Mon – Thu</span><span>10am – 8pm</span></li>
+          <li style="display: flex; justify-content: space-between; padding: 4px 0;"><span>Fri</span><span>10am – 5pm</span></li>
+          <li style="display: flex; justify-content: space-between; padding: 4px 0;"><span>Sat</span><span>By request</span></li>
+          <li style="display: flex; justify-content: space-between; padding: 4px 0;"><span>Sun</span><span>Events only</span></li>
+        </ul>
+      </div>
+
+      <div style="border-top: 1px solid var(--rule-soft); margin-top: 28px; padding-top: 24px;">
+        <p class="eyebrow" style="margin-bottom: 12px;">Based in</p>
+        <p style="font-family: var(--serif); font-size: 1.15rem; color: var(--ink); margin: 0;">South-central Edmonton, AB</p>
+        <p style="font-size: 0.85rem; color: var(--ink-mute); margin-top: 6px;">Treaty 6 territory.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid" style="border-top: 0; margin-top: 0; padding-top: 0;">
+      <div><a class="brand" href="index.html" style="color: var(--paper-light); font-size: 1.7rem;"><span>Marci</span><span style="color: var(--sage-pale);">.</span><span>RMT</span></a><p style="font-family: var(--serif); font-style: italic; color: var(--sage-pale); margin-top: 8px;">Clinical Care, Anywhere.</p></div>
+      <div><h5>Services</h5><ul><li><a href="services.html">In-home</a></li><li><a href="events.html">Events</a></li></ul></div>
+      <div><h5>About</h5><ul><li><a href="about.html">Therapist</a></li><li><a href="areas.html">Areas</a></li><li><a href="faq.html">FAQ</a></li></ul></div>
+      <div><h5>Contact</h5><ul><li><a href="tel:7807773133">780-777-3133</a></li><li><a href="mailto:marci.makarewicz@gmail.com">Email</a></li></ul></div>
+    </div>
+    <div class="footer-fine"><span>© 2026 Marci.RMT</span><span>MTAA Member · Direct billing</span></div>
+  </div>
+</footer>
+
+<script>
+  // tab switcher; also picks tab from URL hash on load
+  const tabs = document.querySelectorAll('.tab');
+  const panes = document.querySelectorAll('.tab-pane');
+  function activate(name) {
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === name));
+    panes.forEach(p => p.classList.toggle('active', p.dataset.pane === name));
+  }
+  tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.tab)));
+  // hash-based deep link
+  const hash = location.hash.replace('#', '');
+  if (hash === 'book-event') activate('event');
+  else if (hash === 'gift') activate('general');
+</script>
+
+<a class="mobile-book" href="contact.html#book-home">Book <span class="arr">→</span></a>
+
+</body>
+</html>
