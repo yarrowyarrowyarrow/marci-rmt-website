@@ -671,3 +671,8 @@ th { font-family: var(--sans); font-size: 0.74rem; font-weight: 500; letter-spac
   height: 14px;
   background: var(--rule-soft);
 }
+
+/* Contact form submission feedback */
+.form-status { display: none; margin-top: 18px; padding: 14px 18px; font-size: 0.92rem; line-height: 1.5; color: var(--ink-soft); background: var(--paper-light); border-left: 3px solid var(--sage); }
+.form-status.is-visible { display: block; }
+.form-status.is-error { border-left-color: #a3442f; }

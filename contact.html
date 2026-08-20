@@ -14,6 +14,7 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <link rel="apple-touch-icon" href="favicon.svg" />
 <link rel="stylesheet" href="styles.css" />
+<script defer src="forms.js"></script>
 <style>
   .tab-row { display: flex; gap: 4px; margin-bottom: 36px; border-bottom: 1px solid var(--rule-soft); }
   .tab { padding: 16px 24px; font-family: var(--sans); font-size: 0.82rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mute); border-bottom: 2px solid transparent; cursor: pointer; background: transparent; border-left: 0; border-right: 0; border-top: 0; transition: all 0.2s; margin-bottom: -1px; }
@@ -78,22 +79,25 @@
         <h2 style="font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 12px;">Request an in-home appointment.</h2>
         <p style="color: var(--ink-soft); margin-bottom: 32px;">Fill in a few details and I'll come back within one business day with available times. New clients will receive a health-history form to complete before the first session.</p>
 
-        <form>
+        <!-- action is set by forms.js from a single constant; see forms.js -->
+        <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" data-enquiry="in-home">
+          <input type="hidden" name="_subject" value="New in-home enquiry (Marci.RMT)" />
+          <input type="hidden" name="enquiry_type" value="In-home massage" />
           <div class="field-row">
-            <div class="field"><label>Your name</label><input type="text" required placeholder="First and last" /></div>
-            <div class="field"><label>Pronouns <span style="text-transform: none; opacity: 0.6;">(optional)</span></label><input type="text" placeholder="they/them, she/her, …" /></div>
+            <div class="field"><label>Your name</label><input type="text" name="name" required placeholder="First and last" /></div>
+            <div class="field"><label>Pronouns <span style="text-transform: none; opacity: 0.6;">(optional)</span></label><input type="text" name="pronouns" placeholder="they/them, she/her, …" /></div>
           </div>
           <div class="field-row">
-            <div class="field"><label>Email</label><input type="email" required placeholder="you@email.com" /></div>
-            <div class="field"><label>Phone</label><input type="tel" required placeholder="(780) 555-0000" /></div>
+            <div class="field"><label>Email</label><input type="email" name="email" required placeholder="you@email.com" /></div>
+            <div class="field"><label>Phone</label><input type="tel" name="phone" required placeholder="(780) 555-0000" /></div>
           </div>
-          <div class="field"><label>Address (city / neighbourhood is fine)</label><input type="text" placeholder="Strathcona, Edmonton" /></div>
+          <div class="field"><label>Address (city / neighbourhood is fine)</label><input type="text" name="area" placeholder="Strathcona, Edmonton" /></div>
           <div class="field-row">
-            <div class="field"><label>Session length</label><select><option>60 minutes · $140</option><option selected>75 minutes · $175</option><option>90 minutes · $200</option><option>120 minutes · $240</option></select></div>
-            <div class="field"><label>Preferred days</label><select><option>Weekdays</option><option>Evenings</option><option>Weekends</option><option>Flexible</option></select></div>
+            <div class="field"><label>Session length</label><select name="session_length"><option>60 minutes · $140</option><option selected>75 minutes · $175</option><option>90 minutes · $200</option><option>120 minutes · $240</option></select></div>
+            <div class="field"><label>Preferred days</label><select name="preferred_days"><option>Weekdays</option><option>Evenings</option><option>Weekends</option><option>Flexible</option></select></div>
           </div>
-          <div class="field"><label>Notes, focus areas, history, T1D, anything I should know</label><textarea placeholder="A line or two is plenty."></textarea></div>
-          <button type="button" class="btn" onclick="alert('Form is a mockup. Submission will route through Jane at launch.')"><span>Send request</span><span class="arr">→</span></button>
+          <div class="field"><label>Anything you'd like me to know?</label><textarea name="notes" placeholder="A line or two is plenty."></textarea><p style="font-size: 0.78rem; color: var(--ink-mute); margin-top: 8px;">Please keep this general. Health history and consent are collected securely through the intake form in Jane before your first visit.</p></div>
+          <button type="submit" class="btn"><span>Send request</span><span class="arr">→</span></button>
           <p style="font-size: 0.78rem; color: var(--ink-mute); margin-top: 16px;">Replies typically within one business day. By submitting you agree to the cancellation policy.</p>
         </form>
       </div>
@@ -103,26 +107,28 @@
         <h2 style="font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 12px;">Request an event quote.</h2>
         <p style="color: var(--ink-soft); margin-bottom: 32px;">Tell me about your event and I'll come back with a tailored proposal, usually within one business day. Most quotes include travel, equipment, and digital intake.</p>
 
-        <form>
+        <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" data-enquiry="event">
+          <input type="hidden" name="_subject" value="New event quote request (Marci.RMT)" />
+          <input type="hidden" name="enquiry_type" value="Event quote" />
           <div class="field-row">
-            <div class="field"><label>Your name</label><input type="text" required /></div>
-            <div class="field"><label>Organization</label><input type="text" /></div>
+            <div class="field"><label>Your name</label><input type="text" name="name" required /></div>
+            <div class="field"><label>Organization</label><input type="text" name="organization" /></div>
           </div>
           <div class="field-row">
-            <div class="field"><label>Email</label><input type="email" required /></div>
-            <div class="field"><label>Phone</label><input type="tel" /></div>
+            <div class="field"><label>Email</label><input type="email" name="email" required /></div>
+            <div class="field"><label>Phone</label><input type="tel" name="phone" /></div>
           </div>
           <div class="field-row">
-            <div class="field"><label>Event type</label><select><option>Corporate wellness day</option><option>Wedding</option><option>Festival / community event</option><option>Private party</option><option>Other</option></select></div>
-            <div class="field"><label>Format</label><select><option>Hired by hour (free for guests)</option><option>Pay-per-minute booth</option><option>Not sure yet</option></select></div>
+            <div class="field"><label>Event type</label><select name="event_type"><option>Corporate wellness day</option><option>Wedding</option><option>Festival / community event</option><option>Private party</option><option>Other</option></select></div>
+            <div class="field"><label>Format</label><select name="format"><option>Hired by hour (free for guests)</option><option>Pay-per-minute booth</option><option>Not sure yet</option></select></div>
           </div>
           <div class="field-row">
-            <div class="field"><label>Date</label><input type="date" /></div>
-            <div class="field"><label>Approx. guest count</label><input type="number" placeholder="e.g. 80" /></div>
+            <div class="field"><label>Date</label><input type="date" name="event_date" /></div>
+            <div class="field"><label>Approx. guest count</label><input type="number" name="guest_count" placeholder="e.g. 80" /></div>
           </div>
-          <div class="field"><label>Location (city)</label><input type="text" placeholder="Edmonton, AB" /></div>
-          <div class="field"><label>Anything else?</label><textarea placeholder="Run-of-show, branding requests, accessibility needs, etc."></textarea></div>
-          <button type="button" class="btn" onclick="alert('Form is a mockup. Live submission at launch.')"><span>Request quote</span><span class="arr">→</span></button>
+          <div class="field"><label>Location (city)</label><input type="text" name="location" placeholder="Edmonton, AB" /></div>
+          <div class="field"><label>Anything else?</label><textarea name="details" placeholder="Run-of-show, branding requests, accessibility needs, etc."></textarea></div>
+          <button type="submit" class="btn"><span>Request quote</span><span class="arr">→</span></button>
         </form>
       </div>
 
@@ -131,14 +137,16 @@
         <h2 style="font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 12px;">Gift cards & general questions.</h2>
         <p style="color: var(--ink-soft); margin-bottom: 32px;">Buying a gift card, checking on direct billing, or asking something else? Drop a note here.</p>
 
-        <form>
+        <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" data-enquiry="general">
+          <input type="hidden" name="_subject" value="New general enquiry (Marci.RMT)" />
+          <input type="hidden" name="enquiry_type" value="General / gift card" />
           <div class="field-row">
-            <div class="field"><label>Your name</label><input type="text" required /></div>
-            <div class="field"><label>Email</label><input type="email" required /></div>
+            <div class="field"><label>Your name</label><input type="text" name="name" required /></div>
+            <div class="field"><label>Email</label><input type="email" name="email" required /></div>
           </div>
-          <div class="field"><label>Topic</label><select><option>Gift card purchase</option><option>Direct billing question</option><option>Press / media</option><option>Other</option></select></div>
-          <div class="field"><label>Message</label><textarea required></textarea></div>
-          <button type="button" class="btn" onclick="alert('Form is a mockup.')"><span>Send</span><span class="arr">→</span></button>
+          <div class="field"><label>Topic</label><select name="topic"><option>Gift card purchase</option><option>Direct billing question</option><option>Press / media</option><option>Other</option></select></div>
+          <div class="field"><label>Message</label><textarea name="message" required></textarea></div>
+          <button type="submit" class="btn"><span>Send</span><span class="arr">→</span></button>
         </form>
       </div>
     </div>
