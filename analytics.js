@@ -12,7 +12,7 @@
 (function () {
   'use strict';
 
-  var WEBSITE_ID = '';
+  var WEBSITE_ID = '0d22651f-283e-46f3-b9dc-b98b0a3e1e42';
   var SCRIPT_SRC = 'https://cloud.umami.is/script.js';
 
   if (!WEBSITE_ID) return;
