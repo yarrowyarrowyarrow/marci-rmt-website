@@ -3,17 +3,13 @@
  * Privacy-first, cookieless page and event tracking via Umami Cloud.
  * No cookies are set and no personal data is collected, so the site does
  * not need a cookie consent banner.
- *
- * ─────────────────────────────────────────────────────────────────────
- * SETUP: paste the Website ID from Umami Cloud between the quotes below.
- * Until it is filled in, this file does nothing at all.
- * ─────────────────────────────────────────────────────────────────────
  */
 (function () {
   'use strict';
 
   var WEBSITE_ID = '0d22651f-283e-46f3-b9dc-b98b0a3e1e42';
   var SCRIPT_SRC = 'https://cloud.umami.is/script.js';
+  var BOOKING_HOST = 'janeapp.com';
 
   if (!WEBSITE_ID) return;
 
@@ -40,12 +36,6 @@
     return 'page-cta';
   }
 
-  function bookingType(href) {
-    if (href.indexOf('#book-event') !== -1) return 'event';
-    if (href.indexOf('#book-home') !== -1) return 'in-home';
-    return 'general';
-  }
-
   document.addEventListener('click', function (e) {
     var el = e.target;
     if (!el || typeof el.closest !== 'function') return;
@@ -54,20 +44,6 @@
     if (!link) return;
 
     var href = link.getAttribute('href') || '';
-
-    /* Book CTAs. Matches #book, #book-home and #book-event, and
-       deliberately not in-page anchors like #booking on the FAQ. */
-    if (/#book(-home|-event)?$/.test(href)) {
-      track('Book Click', {
-        placement: placement(link),
-        type: bookingType(href),
-        page: location.pathname
-      });
-      return;
-    }
-
-    /* Outbound links, including the Jane booking link once it is wired up.
-       Query strings and fragments are dropped rather than recorded. */
     var url;
     try {
       url = new URL(link.href, location.href);
@@ -75,6 +51,30 @@
       return;
     }
 
+    /* Booking CTAs that hand off to Jane. */
+    if (url.hostname === BOOKING_HOST || url.hostname.slice(-(BOOKING_HOST.length + 1)) === '.' + BOOKING_HOST) {
+      track('Book Click', {
+        placement: placement(link),
+        destination: 'jane',
+        page: location.pathname
+      });
+      return;
+    }
+
+    /* Event work is quoted, not booked, so those CTAs stay on the contact
+       form. Tracked as a Book Click so both paths show in one funnel.
+       Deliberately does not match in-page anchors like #booking on the FAQ. */
+    if (/#book-event$/.test(href)) {
+      track('Book Click', {
+        placement: placement(link),
+        destination: 'event-quote',
+        page: location.pathname
+      });
+      return;
+    }
+
+    /* Any other link leaving the site. Query strings and fragments are
+       dropped rather than recorded. */
     if (/^https?:$/.test(url.protocol) && url.hostname !== location.hostname) {
       track('Outbound Link', {
         domain: url.hostname,
