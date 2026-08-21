@@ -24,6 +24,7 @@
   .tab-pane.active { display: block; }
   .field { margin-bottom: 20px; }
   .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 760px) { .field-row { grid-template-columns: 1fr; } }
   textarea { min-height: 120px; resize: vertical; }
 </style>
 <script defer src="analytics.js"></script>
