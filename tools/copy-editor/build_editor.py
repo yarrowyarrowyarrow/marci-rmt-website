@@ -44,6 +44,8 @@ CONDITIONS = [
     ("maintenance",        "General maintenance"),
 ]
 
+PAGE_KEYS = {k for k, _, _ in PAGES} | {"cond-" + k for k, _ in CONDITIONS}
+
 TAGGABLE = {"p", "h1", "h2", "h3", "h4", "h5", "h6", "li", "span",
             "td", "summary", "figcaption", "small", "div", "a", "button"}
 
@@ -111,6 +113,7 @@ print(f"→ parsed {len(DECK)} deck blocks")
 
 # ------------------------------------------------------------ page build
 def build_page(html_path, page_key, rel_prefix=""):
+    """page_key must match the key used in PAGES/CONDITIONS."""
     """Return (srcdoc_html, meta, tagged_count, missed_ids)."""
     soup = BeautifulSoup((ROOT / html_path).read_text(encoding="utf-8"), "html.parser")
 
@@ -137,10 +140,26 @@ def build_page(html_path, page_key, rel_prefix=""):
         else:
             img.decompose()
 
-    # links are inert here; the page switcher navigates
+    # resolve in-site links to page keys so the real nav drives the editor
     for a in soup.find_all("a"):
+        href = (a.get("href") or "").strip()
+        target, frag = (href.split("#", 1) + [""])[:2]
+        target = target.replace("../", "").lstrip("./")
+        if target.startswith("conditions/"):
+            key = "cond-" + target[len("conditions/"):].replace(".html", "")
+        elif target.endswith(".html"):
+            key = target.replace(".html", "")
+        elif not target and frag:
+            key = page_key          # pure in-page anchor
+        else:
+            key = None
+        if key and key in PAGE_KEYS:
+            a["data-goto"] = key
+            if frag:
+                a["data-goto-hash"] = frag
+        elif href and not href.startswith("javascript:"):
+            a["data-external"] = href
         a["href"] = "javascript:void(0)"
-        a["tabindex"] = "-1"
 
     # every FAQ answer visible at rest
     for d in soup.find_all("details"):
@@ -149,14 +168,31 @@ def build_page(html_path, page_key, rel_prefix=""):
     # ---- tag editable blocks by matching deck text
     want = {bid: v for bid, v in DECK.items()
             if v["src"].split(":")[0].endswith(html_path.split("/")[-1])
-            or (rel_prefix and "conditions/" in v["src"] and page_key in v["src"])}
+            or (rel_prefix and "conditions/" in v["src"]
+                and page_key.replace("cond-", "") + ".html" in v["src"])}
 
     # meta blocks live in the chrome, not the page body
     body_want = {b: v for b, v in want.items()
                  if not re.search(r"meta-(title|description)|og-description", b)}
 
+    # Navigation chrome is not deck content. Without this, a nav link whose
+    # label matches a block's text (e.g. "Areas Served") gets claimed as that
+    # block: the link stops navigating, and a merge would write body copy into
+    # the site's menu.
+    def in_chrome(el):
+        for a in el.parents:
+            cls = a.get("class") or []
+            if a.name in ("header", "nav"):
+                return True
+            if {"dropdown", "breadcrumbs", "nav-links", "nav-cta", "mobile-book"} & set(cls):
+                return True
+            if a.name == "ul" and a.find_parent("footer"):
+                return True
+        return False
+
     # <br> and inline <em> must read as word breaks, so join with a space
-    candidates = [e for e in soup.find_all(TAGGABLE) if e.get_text(strip=True)]
+    candidates = [e for e in soup.find_all(TAGGABLE)
+                  if e.get_text(strip=True) and not in_chrome(e)]
     index = {}
     for e in candidates:
         index.setdefault(norm(e.get_text(" ")), []).append(e)
@@ -198,6 +234,9 @@ details > summary { cursor: default; }
 .mobile-book { display: none !important; }
 html { scroll-behavior: auto; }
 [data-copy-id] { outline-offset: 3px; border-radius: 2px; transition: background .12s, box-shadow .12s; }
+a[data-goto]:not([data-copy-id]) { cursor: pointer; }
+a[data-goto]:not([data-copy-id]):hover { outline: 2px solid #3a7d6c; outline-offset: 3px; border-radius: 2px; }
+a[data-external]:not([data-copy-id]):hover { outline: 2px dashed #9aa0aa; outline-offset: 3px; border-radius: 2px; }
 [data-copy-id]:hover { background: rgba(217,131,36,.10); box-shadow: 0 0 0 3px rgba(217,131,36,.10); cursor: text; }
 [data-copy-id]:focus { outline: 2px solid #d98324; background: rgba(217,131,36,.06); }
 [data-copy-id].is-changed { background: rgba(58,125,108,.10); box-shadow: -10px 0 0 0 #3a7d6c; }
@@ -231,7 +270,7 @@ for key, path, label in PAGES:
     print(f"   {label}: {n} editable blocks" + (f"  ({len(missed)} unmatched)" if missed else ""))
 
 for key, label in CONDITIONS:
-    doc, meta, n, missed = build_page(f"conditions/{key}.html", key, rel_prefix="../")
+    doc, meta, n, missed = build_page(f"conditions/{key}.html", "cond-" + key, rel_prefix="../")
     pages_data.append({"key": f"cond-{key}", "label": label, "group": "What I treat",
                        "srcdoc": doc, "meta": meta})
     total_tagged += n

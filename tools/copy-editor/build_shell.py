@@ -58,6 +58,8 @@ select.pick:focus-visible,button:focus-visible{outline:2px solid var(--amber);ou
 @keyframes pulse{50%{opacity:.3}}
 @media(prefers-reduced-motion:reduce){.status .dot{animation:none}}
 
+.pagecount{color:var(--teal-lift);white-space:nowrap;font-variant-numeric:tabular-nums}
+.pagecount:empty{display:none}
 .count{margin-left:auto;display:flex;align-items:center;gap:10px;color:var(--fg-dim);white-space:nowrap}
 .count b{color:var(--fg);font-variant-numeric:tabular-nums;font-weight:600}
 
@@ -130,6 +132,7 @@ iframe{width:100%;height:100%;border:0;display:block;background:#f4f1ea}
   <select class="pick" id="pick" aria-label="Choose a page to edit"></select>
   <button class="nav-btn" id="next" title="Next page" aria-label="Next page">›</button>
   <div class="status" id="status" data-s="idle"><span class="dot"></span><span id="statusText">Ready</span></div>
+  <span id="pageEdits" class="pagecount"></span>
   <div class="count">
     <span class="lbl" style="color:var(--fg-mute)">Edited</span>
     <span><b id="nEdited">0</b> <span style="color:var(--fg-mute)">/ __TOTAL__</span></span>
@@ -146,8 +149,10 @@ iframe{width:100%;height:100%;border:0;display:block;background:#f4f1ea}
     <p><b>Changed text gets a green bar</b> down its left side, so you can see at a glance what you've touched on a page.</p>
     <p><b>Press <kbd>Esc</kbd> to undo a block</b> back to its original wording while your cursor is still in it.</p>
     <p><b>An orange <span class="chip">T1</span> tag</b> marks copy I flagged as reading AI-generated. Hover it to read why. Editing the block clears the flag.</p>
-    <p><b>Links and buttons don't work here</b> — this is a copy editor, not the live site. Use the page menu above to move around.</p>
+    <p><b>Click the site's own menu to move around</b> — Services, About, Areas Served and the rest all work, as do links in the footer and body. A green outline means a link will take you there.</p>
+    <p><b>Or use the page menu above</b>, which lists all 21 pages and shows a ✓ count next to any page you've already edited. <kbd>Alt</kbd>+<kbd>←</kbd> / <kbd>→</kbd> pages through them.</p>
     <p><b>Nothing here touches the live site.</b> When you're done, tell me and I'll merge your wording into the real pages.</p>
+    <p><b>Button labels are copy too</b> — clicking one like "Read the full story" puts your cursor in it rather than navigating. Use the top menu to get to that page.</p>
     <p><b>Images, prices and layout</b> aren't editable in this view. Tell me about those in chat and I'll change them directly.</p>
   </div>
 </div>
@@ -192,6 +197,13 @@ function countEdited(){
   let n = 0;
   for(const k in edits) n += Object.keys(edits[k]||{}).length;
   $("nEdited").textContent = n;
+  const here = Object.keys(edits[PAGES[cur].key] || {}).length;
+  $("pageEdits").textContent = here ? `${here} edited here` : "";
+  // mark pages that have edits, so the menu shows where you've been
+  [...pick.options].forEach(o=>{
+    const k = PAGES[+o.value].key, c = Object.keys(edits[k]||{}).length;
+    o.textContent = PAGES[+o.value].label + (c ? `  ✓ ${c}` : "");
+  });
 }
 
 function toast(msg){
@@ -302,13 +314,28 @@ function wire(){
     frame.contentDocument.execCommand("insertText", false, norm(txt));
   });
 
-  // links are inert in the editor
-  doc.addEventListener("click", e=>{ if(e.target.closest("a")) e.preventDefault(); });
+  // the site's own links drive the editor
+  doc.addEventListener("click", e=>{
+    const a = e.target.closest("a"); if(!a) return;
+    e.preventDefault();
+    if(a.hasAttribute("data-copy-id")) return;   // it's copy — let the cursor land
+    const to = a.getAttribute("data-goto");
+    if(to){
+      const i = PAGES.findIndex(p => p.key === to);
+      if(i >= 0){ show(i, a.getAttribute("data-goto-hash") || ""); return; }
+    }
+    const ext = a.getAttribute("data-external");
+    if(ext) toast(ext.startsWith("mailto:") || ext.startsWith("tel:")
+      ? "That's your contact link — it works on the live site."
+      : "That link opens <b>" + ext.replace(/^https?:\/\//,"").split("/")[0] + "</b> on the live site.");
+  });
 }
 
 /* ---------- navigation ---------- */
-function show(i){
+let pendingHash = "";
+function show(i, hash){
   flush();
+  pendingHash = hash || "";
   cur = Math.max(0, Math.min(PAGES.length-1, i));
   pick.value = cur;
   $("prev").disabled = cur === 0;
@@ -317,10 +344,23 @@ function show(i){
   $("metaTitle").value = p.meta.title || "";
   $("metaDesc").value  = p.meta.description || "";
   frame.srcdoc = p.srcdoc;
+  countEdited();
 }
 
-frame.addEventListener("load", ()=>{ wire(); applyEdits(); });
+frame.addEventListener("load", ()=>{
+  wire(); applyEdits();
+  if(pendingHash){
+    const t = frame.contentDocument.getElementById(pendingHash);
+    if(t) t.scrollIntoView({block:"start"});
+    pendingHash = "";
+  }
+});
 pick.addEventListener("change", ()=> show(+pick.value));
+document.addEventListener("keydown", e=>{
+  if(e.target.closest("input,textarea,select")) return;
+  if(e.altKey && e.key === "ArrowLeft"){ e.preventDefault(); show(cur-1); }
+  if(e.altKey && e.key === "ArrowRight"){ e.preventDefault(); show(cur+1); }
+});
 $("prev").addEventListener("click", ()=> show(cur-1));
 $("next").addEventListener("click", ()=> show(cur+1));
 
