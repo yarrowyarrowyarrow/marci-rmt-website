@@ -15,36 +15,18 @@ from pathlib import Path
 from bs4 import BeautifulSoup, Comment
 from PIL import Image
 
-ROOT = Path("/home/user/marci-rmt-website")
-OUT = ROOT / "copy-editor.html"
+ROOT = Path(__file__).resolve().parents[2]
 
 PAGES = [
-    ("index",           "index.html",        "Home"),
-    ("about",           "about.html",        "About"),
-    ("services",        "services.html",     "In-Home Services"),
-    ("events",          "events.html",       "Event Massage"),
-    ("areas",           "areas.html",        "Areas Served"),
-    ("first-visit",     "first-visit.html",  "Your First Visit"),
-    ("faq",             "faq.html",          "Policies & FAQ"),
-    ("contact",         "contact.html",      "Contact"),
-    ("404",             "404.html",          "404 page"),
-]
-CONDITIONS = [
-    ("tension-headaches",  "Tension headaches"),
-    ("neck-shoulder",      "Neck & shoulder pain"),
-    ("low-back-pain",      "Low back pain"),
-    ("stress-sleep",       "Stress & sleep"),
-    ("tmj",                "TMJ & jaw tension"),
-    ("frozen-shoulder",    "Frozen shoulder"),
-    ("sciatica",           "Sciatica & piriformis"),
-    ("pregnancy",          "Pregnancy massage"),
-    ("post-surgical",      "Post-surgical recovery"),
-    ("repetitive-strain",  "Repetitive strain"),
-    ("plantar-fasciitis",  "Plantar fasciitis"),
-    ("maintenance",        "General maintenance"),
+    ("index",    "index.html",    "Home"),
+    ("events",   "events.html",   "Events"),
+    ("about",    "about.html",    "About"),
+    ("faq",      "faq.html",      "Policies & FAQ"),
+    ("contact",  "contact.html",  "Contact"),
+    ("404",      "404.html",      "404 page"),
 ]
 
-PAGE_KEYS = {k for k, _, _ in PAGES} | {"cond-" + k for k, _ in CONDITIONS}
+PAGE_KEYS = {k for k, _, _ in PAGES}
 
 TAGGABLE = {"p", "h1", "h2", "h3", "h4", "h5", "h6", "li", "span",
             "td", "summary", "figcaption", "small", "div", "a", "button"}
@@ -86,13 +68,15 @@ for f in sorted(os.listdir(ROOT / "assets")):
 
 # ------------------------------------------------------------- copy deck
 def parse_deck():
-    """Read copy-deck.md -> {block_id: {'text':..., 'note':..., 'src':...}}"""
+    """Read copy-deck.md -> {block_id: {text, note, src, line, mine}}.
+
+    `mine` marks a block already in Marci's own words (a YOURS line)."""
     deck = {}
     txt = (ROOT / "copy-deck.md").read_text(encoding="utf-8")
     for chunk in re.split(r"^### ", txt, flags=re.M)[1:]:
         lines = chunk.split("\n")
         bid = lines[0].strip()
-        src, note, body = "", "", []
+        src, note, mine, body = "", "", False, []
         for ln in lines[1:]:
             if ln.startswith("---") or ln.startswith("#"):
                 break
@@ -100,10 +84,14 @@ def parse_deck():
                 src = ln.strip("` ")
             elif ln.startswith("NOTE:"):
                 note = ln[5:].strip()
+            elif ln.strip() == "YOURS":
+                mine = True
             elif ln.strip():
                 body.append(ln.strip())
         if bid and body:
-            deck[bid] = {"text": " ".join(body), "note": note, "src": src}
+            m = re.search(r":(\d+)", src)
+            deck[bid] = {"text": " ".join(body), "note": note, "src": src,
+                         "line": int(m.group(1)) if m else 0, "mine": mine}
     return deck
 
 
@@ -112,9 +100,10 @@ print(f"→ parsed {len(DECK)} deck blocks")
 
 
 # ------------------------------------------------------------ page build
-def build_page(html_path, page_key, rel_prefix=""):
-    """page_key must match the key used in PAGES/CONDITIONS."""
-    """Return (srcdoc_html, meta, tagged_count, missed_ids)."""
+def build_page(html_path, page_key):
+    """Return (srcdoc_html, meta, tagged_count, mine_ids, missed_ids).
+
+    page_key must match the key used in PAGES."""
     soup = BeautifulSoup((ROOT / html_path).read_text(encoding="utf-8"), "html.parser")
 
     meta = {"title": "", "description": ""}
@@ -145,9 +134,7 @@ def build_page(html_path, page_key, rel_prefix=""):
         href = (a.get("href") or "").strip()
         target, frag = (href.split("#", 1) + [""])[:2]
         target = target.replace("../", "").lstrip("./")
-        if target.startswith("conditions/"):
-            key = "cond-" + target[len("conditions/"):].replace(".html", "")
-        elif target.endswith(".html"):
+        if target.endswith(".html"):
             key = target.replace(".html", "")
         elif not target and frag:
             key = page_key          # pure in-page anchor
@@ -166,10 +153,7 @@ def build_page(html_path, page_key, rel_prefix=""):
         d["open"] = ""
 
     # ---- tag editable blocks by matching deck text
-    want = {bid: v for bid, v in DECK.items()
-            if v["src"].split(":")[0].endswith(html_path.split("/")[-1])
-            or (rel_prefix and "conditions/" in v["src"]
-                and page_key.replace("cond-", "") + ".html" in v["src"])}
+    want = {bid: v for bid, v in DECK.items() if v["src"].split(":")[0] == html_path}
 
     # meta blocks live in the chrome, not the page body
     body_want = {b: v for b, v in want.items()
@@ -184,7 +168,7 @@ def build_page(html_path, page_key, rel_prefix=""):
             cls = a.get("class") or []
             if a.name in ("header", "nav"):
                 return True
-            if {"dropdown", "breadcrumbs", "nav-links", "nav-cta", "mobile-book"} & set(cls):
+            if {"breadcrumbs", "nav-links", "nav-cta", "mobile-book"} & set(cls):
                 return True
             if a.name == "ul" and a.find_parent("footer"):
                 return True
@@ -197,30 +181,39 @@ def build_page(html_path, page_key, rel_prefix=""):
     for e in candidates:
         index.setdefault(norm(e.get_text(" ")), []).append(e)
 
-    tagged, missed = 0, []
+    tagged, missed, mine = 0, [], []
     used = set()
 
-    def claim(bid, text, note):
+    def claim(bid, text, v, note):
         nonlocal tagged
         matches = [e for e in index.get(norm(text), []) if id(e) not in used]
         if not matches:
             return False
-        # smallest subtree = the element that actually owns this text
-        el = min(matches, key=lambda e: len(list(e.descendants)))
+        # A wrapper whose child carries the same text is not the owner; the
+        # innermost element is.
+        ids = {id(e) for e in matches}
+        inner = [e for e in matches if not any(id(d) in ids for d in e.find_all(True))]
+        # The same words can appear twice on one page (the home hero and the
+        # footer tagline are both "Clinical Care, Anywhere."), so the deck's
+        # line number decides which element the block means.
+        el = min(inner, key=lambda e: abs((e.sourceline or 0) - v["line"]))
         used.add(id(el))
         el["data-copy-id"] = bid
         el["data-copy-orig"] = norm(text)
         if note:
             el["data-copy-note"] = note
+        if v["mine"]:
+            el["data-copy-mine"] = ""
+            mine.append(bid)
         tagged += 1
         return True
 
     for bid, v in body_want.items():
-        if claim(bid, v["text"], v["note"]):
+        if claim(bid, v["text"], v, v["note"]):
             continue
         # a few deck entries join two adjacent elements with " / " or " — "
         parts = re.split(r"\s+(?:/|—)\s+", v["text"])
-        if len(parts) > 1 and all(claim(f"{bid}--{i+1}", p, v["note"] if i == 0 else "")
+        if len(parts) > 1 and all(claim(f"{bid}--{i+1}", p, v, v["note"] if i == 0 else "")
                                   for i, p in enumerate(parts)):
             continue
         missed.append(bid)
@@ -228,8 +221,6 @@ def build_page(html_path, page_key, rel_prefix=""):
     css = (ROOT / "styles.css").read_text(encoding="utf-8")
     overrides = """
 /* --- copy editor overrides (not part of the site) --- */
-.tab-pane { display: block !important; margin-bottom: 40px; }
-.tab-row { pointer-events: none; }
 details > summary { cursor: default; }
 .mobile-book { display: none !important; }
 html { scroll-behavior: auto; }
@@ -241,6 +232,12 @@ a[data-external]:not([data-copy-id]):hover { outline: 2px dashed #9aa0aa; outlin
 [data-copy-id]:focus { outline: 2px solid #d98324; background: rgba(217,131,36,.06); }
 [data-copy-id].is-changed { background: rgba(58,125,108,.10); box-shadow: -10px 0 0 0 #3a7d6c; }
 [data-copy-id].is-changed:hover { background: rgba(58,125,108,.16); }
+/* a cleared block stays clickable, so it can be restored with Esc */
+[data-copy-id].is-empty { display: inline-block; min-width: 12em; min-height: 1.4em; }
+[data-copy-id].is-empty::before {
+  content: "Removed. Esc restores it."; font: italic 13px/1.4 -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #8d96a5; pointer-events: none;
+}
 [data-copy-flag]::after {
   content: attr(data-copy-flag); font-family: ui-monospace, Menlo, monospace;
   font-size: 9px; letter-spacing: .08em; vertical-align: super;
@@ -254,30 +251,25 @@ a[data-external]:not([data-copy-id]):hover { outline: 2px dashed #9aa0aa; outlin
     doc = (f"<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\">"
            f"<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">"
            f"<style>{css}{overrides}</style></head><body>{inner}</body></html>")
-    return doc, meta, tagged, missed
+    return doc, meta, tagged, mine, missed
 
 
 print("→ building pages")
 pages_data = []
-total_tagged, all_missed = 0, []
+total_tagged, total_mine, all_missed = 0, 0, []
 
 for key, path, label in PAGES:
-    doc, meta, n, missed = build_page(path, key)
-    pages_data.append({"key": key, "label": label, "group": "Main pages",
-                       "srcdoc": doc, "meta": meta})
+    doc, meta, n, mine, missed = build_page(path, key)
+    pages_data.append({"key": key, "label": label, "group": "Pages",
+                       "srcdoc": doc, "meta": meta, "blocks": n, "mine": mine})
     total_tagged += n
+    total_mine += len(mine)
     all_missed += missed
-    print(f"   {label}: {n} editable blocks" + (f"  ({len(missed)} unmatched)" if missed else ""))
+    print(f"   {label}: {n} editable blocks, {len(mine)} already yours"
+          + (f"  ({len(missed)} unmatched)" if missed else ""))
 
-for key, label in CONDITIONS:
-    doc, meta, n, missed = build_page(f"conditions/{key}.html", "cond-" + key, rel_prefix="../")
-    pages_data.append({"key": f"cond-{key}", "label": label, "group": "What I treat",
-                       "srcdoc": doc, "meta": meta})
-    total_tagged += n
-    all_missed += missed
-    print(f"   {label}: {n} editable blocks" + (f"  ({len(missed)} unmatched)" if missed else ""))
-
-print(f"→ {total_tagged} editable blocks total; {len(all_missed)} deck blocks unmatched")
+print(f"→ {total_tagged} editable blocks total, {total_mine} already yours; "
+      f"{len(all_missed)} deck blocks unmatched")
 if all_missed:
     print("   unmatched:", ", ".join(sorted(all_missed)[:40]))
 

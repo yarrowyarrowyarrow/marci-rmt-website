@@ -4,29 +4,33 @@ import json
 from pathlib import Path
 
 HERE = Path(__file__).parent
-ROOT = Path("/home/user/marci-rmt-website")
+ROOT = HERE.resolve().parents[1]
 pages = json.loads((HERE / "pages.json").read_text())
 
 total_blocks = sum(p["srcdoc"].count('data-copy-id="') for p in pages)
 payload = json.dumps(pages, ensure_ascii=False).replace("<", "\\u003c")
 
-HTML = r"""<title>Marci.RMT Copy Editor</title>
+HTML = r"""<title>Marci.RMT Rewrite</title>
 <style>
+/* A dark editing chrome around the real (light) site pages. Single theme on purpose. */
 :root {
+  color-scheme: dark;
   --bar:#161a20; --panel:#212731; --panel-2:#2b323e; --line:#39414f;
   --fg:#e7eaee; --fg-dim:#8d96a5; --fg-mute:#646d7b;
   --amber:#d98324; --teal:#3a7d6c; --teal-lift:#4d9683;
   --ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   --bar-h: 52px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bar);color:var(--fg);font-family:var(--ui);font-size:13px}
 
 /* ---------- top bar ---------- */
 .bar{
-  position:fixed;inset:0 0 auto 0;height:var(--bar-h);z-index:50;
-  display:flex;align-items:center;gap:14px;padding:0 14px;
+  position:fixed;inset:0 0 auto 0;height:calc(var(--bar-h) + var(--safe-top));z-index:50;
+  display:flex;align-items:center;gap:14px;padding:var(--safe-top) 14px 0;
   background:var(--bar);border-bottom:1px solid var(--line);
 }
 .mark{font-weight:600;letter-spacing:-.01em;white-space:nowrap}
@@ -72,8 +76,8 @@ select.pick:focus-visible,button:focus-visible{outline:2px solid var(--amber);ou
 
 /* ---------- drawers ---------- */
 .drawer{
-  position:fixed;left:0;right:0;top:var(--bar-h);z-index:40;
-  max-height:calc(100vh - var(--bar-h) - 40px);overflow-y:auto;
+  position:fixed;left:0;right:0;top:calc(var(--bar-h) + var(--safe-top));z-index:40;
+  max-height:calc(100vh - var(--bar-h) - var(--safe-top) - 40px);overflow-y:auto;
   background:var(--panel);border-bottom:1px solid var(--line);
   padding:18px 20px 20px;
 }
@@ -99,12 +103,12 @@ kbd{
 .meta-note{color:var(--fg-mute);margin:-6px 0 16px;max-width:820px;line-height:1.5}
 
 /* ---------- stage ---------- */
-.stage{position:fixed;inset:var(--bar-h) 0 0 0;background:#f4f1ea}
-.stage.pushed{top:calc(var(--bar-h) + var(--drawer-h,0px))}
+.stage{position:fixed;inset:calc(var(--bar-h) + var(--safe-top)) 0 var(--safe-bottom) 0;background:#f4f1ea}
 iframe{width:100%;height:100%;border:0;display:block;background:#f4f1ea}
 
 .toast{
-  position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:60;
+  position:fixed;left:50%;bottom:calc(22px + var(--safe-bottom));transform:translateX(-50%);z-index:60;
+  max-width:calc(100vw - 32px);
   background:var(--panel-2);color:var(--fg);border:1px solid var(--line);
   border-radius:7px;padding:9px 15px;box-shadow:0 8px 28px rgba(0,0,0,.45);
   opacity:0;pointer-events:none;transition:opacity .16s, transform .16s;
@@ -113,15 +117,24 @@ iframe{width:100%;height:100%;border:0;display:block;background:#f4f1ea}
 .toast b{color:var(--amber)}
 
 .banner{
-  position:fixed;left:0;right:0;top:var(--bar-h);z-index:45;
+  position:fixed;left:0;right:0;top:calc(var(--bar-h) + var(--safe-top));z-index:45;
   background:#3a2420;color:#f0d9d4;border-bottom:1px solid #5c3a33;
   padding:9px 16px;font-size:12.5px;line-height:1.5;
 }
 .banner[hidden]{display:none}
 
+.ghost .short{display:none}
+
+/* Phones: keep the page menu, the save dot, the count and both buttons on one
+   row. The arrows, labels and per-page count are extras the menu covers. */
 @media (max-width:760px){
-  .mark,.count span.lbl{display:none}
-  select.pick{max-width:150px}
+  .bar{gap:8px}
+  .mark,.sep,#prev,#next,#pageEdits,#statusText,.count span.lbl{display:none}
+  .count{gap:8px}
+  select.pick{max-width:130px}
+  .ghost{padding:7px 9px}
+  .ghost .long{display:none}
+  .ghost .short{display:inline}
 }
 </style>
 
@@ -134,10 +147,10 @@ iframe{width:100%;height:100%;border:0;display:block;background:#f4f1ea}
   <div class="status" id="status" data-s="idle"><span class="dot"></span><span id="statusText">Ready</span></div>
   <span id="pageEdits" class="pagecount"></span>
   <div class="count">
-    <span class="lbl" style="color:var(--fg-mute)">Edited</span>
+    <span class="lbl" style="color:var(--fg-mute)">In your words</span>
     <span><b id="nEdited">0</b> <span style="color:var(--fg-mute)">/ __TOTAL__</span></span>
-    <button class="ghost" id="metaBtn" aria-pressed="false">Page title</button>
-    <button class="ghost" id="helpBtn" aria-pressed="false">How this works</button>
+    <button class="ghost" id="metaBtn" aria-pressed="false"><span class="long">Page title</span><span class="short">Title</span></button>
+    <button class="ghost" id="helpBtn" aria-pressed="false"><span class="long">How this works</span><span class="short">Help</span></button>
   </div>
 </div>
 
@@ -146,13 +159,15 @@ iframe{width:100%;height:100%;border:0;display:block;background:#f4f1ea}
   <div class="help-grid">
     <p><b>Click any text and type.</b> Everything on the page that is copy can be edited straight in place. Hovering shows you what's editable.</p>
     <p><b>Your edits save on their own</b>, a moment after you stop typing. The dot next to the page name turns green when a change is stored.</p>
-    <p><b>Changed text gets a green bar</b> down its left side, so you can see at a glance what you've touched on a page.</p>
-    <p><b>Press <kbd>Esc</kbd> to undo a block</b> back to its original wording while your cursor is still in it.</p>
-    <p><b>An orange <span class="chip">T1</span> tag</b> marks copy I flagged as reading AI-generated. Hover it to read why. Editing the block clears the flag.</p>
-    <p><b>Click the site's own menu to move around</b> — Services, About, Areas Served and the rest all work, as do links in the footer and body. A green outline means a link will take you there.</p>
-    <p><b>Or use the page menu above</b>, which lists all 21 pages and shows a ✓ count next to any page you've already edited. <kbd>Alt</kbd>+<kbd>←</kbd> / <kbd>→</kbd> pages through them.</p>
+    <p><b>A green bar means it's in your words.</b> That covers anything you change here, plus text you'd already rewritten before, which is carried over. The count at the top right tracks how much of the site is yours.</p>
+    <p><b>Press <kbd>Esc</kbd> to undo a block</b> back to its starting wording while your cursor is still in it.</p>
+    <p><b>An orange <span class="chip">T1</span> tag</b> marks copy I flagged as reading AI-generated; a <span class="chip">note</span> tag is a heads-up about something I changed. Hover either to read it. Editing the block clears the tag.</p>
+    <p><b>Want something gone?</b> Clear all its text. It stays on screen as "Removed" so you can bring it back with <kbd>Esc</kbd>, and I'll take it out of the page when I merge.</p>
+    <p><b>Click the site's own menu to move around.</b> Services, Events, About, FAQ and Contact all work, as do links in the footer and body. A green outline means a link will take you there.</p>
+    <p><b>Or use the page menu above</b>, which shows how many blocks on each page are in your words. <kbd>Alt</kbd>+<kbd>←</kbd> / <kbd>→</kbd> pages through them.</p>
+    <p><b>Button labels are copy too.</b> Clicking one like "Read the full story" puts your cursor in it rather than navigating.</p>
+    <p><b>The footer is shared by every page.</b> Edit it on Home and the change applies everywhere.</p>
     <p><b>Nothing here touches the live site.</b> When you're done, tell me and I'll merge your wording into the real pages.</p>
-    <p><b>Button labels are copy too</b> — clicking one like "Read the full story" puts your cursor in it rather than navigating. Use the top menu to get to that page.</p>
     <p><b>Images, prices and layout</b> aren't editable in this view. Tell me about those in chat and I'll change them directly.</p>
   </div>
 </div>
@@ -193,16 +208,23 @@ let db = null, edits = {}, cur = 0, saveTimer = null, pendingPages = new Set();
 
 function setStatus(s, text){ $("status").dataset.s = s; $("statusText").textContent = text; }
 
+// Blocks on a page that are in Marci's words: already-yours text carried in
+// from the deck, plus anything edited here. Title/description edits live in
+// the chrome and are not page blocks, so they don't count toward this.
+function yoursOn(p){
+  const ids = new Set(p.mine || []);
+  Object.keys(edits[p.key] || {}).forEach(id => { if(!id.startsWith("__")) ids.add(id); });
+  return ids.size;
+}
+
 function countEdited(){
-  let n = 0;
-  for(const k in edits) n += Object.keys(edits[k]||{}).length;
-  $("nEdited").textContent = n;
-  const here = Object.keys(edits[PAGES[cur].key] || {}).length;
-  $("pageEdits").textContent = here ? `${here} edited here` : "";
-  // mark pages that have edits, so the menu shows where you've been
+  $("nEdited").textContent = PAGES.reduce((n, p) => n + yoursOn(p), 0);
+  const p = PAGES[cur], here = yoursOn(p);
+  $("pageEdits").textContent = here ? `${here} of ${p.blocks} yours here` : "";
+  // the menu shows how far along each page is
   [...pick.options].forEach(o=>{
-    const k = PAGES[+o.value].key, c = Object.keys(edits[k]||{}).length;
-    o.textContent = PAGES[+o.value].label + (c ? `  ✓ ${c}` : "");
+    const q = PAGES[+o.value], c = yoursOn(q);
+    o.textContent = q.label + (c ? `  ✓ ${c}/${q.blocks}` : "");
   });
 }
 
@@ -231,17 +253,28 @@ function queueSave(pageKey){
   saveTimer = setTimeout(flush, 700);
 }
 
+// One write at a time per page document: a second save queues behind the
+// first and sends whatever the page's edits are when its turn comes, so an
+// older save can never land after a newer one.
+const inflight = {};
+function writePage(k){
+  const run = (inflight[k] || Promise.resolve()).catch(()=>{}).then(() =>
+    db.doc("edits/"+k).set({ blocks: {...(edits[k] || {})}, updatedAt: new Date().toISOString() }));
+  inflight[k] = run;
+  return run;
+}
+
 async function flush(){
   if(!db || !pendingPages.size) return;
   const keys = [...pendingPages]; pendingPages.clear();
   setStatus("saving","Saving…");
   try{
-    await Promise.all(keys.map(k =>
-      db.doc("edits/"+k).set({ blocks: edits[k] || {}, updatedAt: new Date().toISOString() })));
-    setStatus("saved","Saved");
+    await Promise.all(keys.map(writePage));
+    if(!pendingPages.size) setStatus("saved","Saved");
   }catch(err){
     keys.forEach(k => pendingPages.add(k));
-    setStatus("off", err && err.code === "revoked" ? "Not saving" : "Save failed");
+    setStatus("off", err && (err.code === "revoked" || err.code === "invalid_argument")
+      ? "Not saving" : "Save failed");
   }
 }
 window.addEventListener("beforeunload", flush);
@@ -261,7 +294,8 @@ function mark(el){
   const id = el.dataset.copyId, key = PAGES[cur].key;
   const changed = (edits[key]||{})[id] !== undefined
     && norm(el.textContent) !== norm(el.dataset.copyOrig);
-  el.classList.toggle("is-changed", changed);
+  el.classList.toggle("is-changed", changed || el.hasAttribute("data-copy-mine"));
+  el.classList.toggle("is-empty", !norm(el.textContent));
   if(changed) el.removeAttribute("data-copy-flag");
   else if(el.dataset.copyNote) el.setAttribute("data-copy-flag", flagOf(el.dataset.copyNote));
 }
@@ -318,7 +352,9 @@ function wire(){
   doc.addEventListener("click", e=>{
     const a = e.target.closest("a"); if(!a) return;
     e.preventDefault();
-    if(a.hasAttribute("data-copy-id")) return;   // it's copy — let the cursor land
+    // A button label is usually a <span> inside the link, so check the click
+    // target, not just the <a>: if it lands on copy, let the cursor land.
+    if(e.target.closest("[data-copy-id]")) return;
     const to = a.getAttribute("data-goto");
     if(to){
       const i = PAGES.findIndex(p => p.key === to);
@@ -326,16 +362,26 @@ function wire(){
     }
     const ext = a.getAttribute("data-external");
     if(ext) toast(ext.startsWith("mailto:") || ext.startsWith("tel:")
-      ? "That's your contact link — it works on the live site."
+      ? "That's your email link. It works on the live site."
       : "That link opens <b>" + ext.replace(/^https?:\/\//,"").split("/")[0] + "</b> on the live site.");
   });
 }
 
 /* ---------- navigation ---------- */
-let pendingHash = "";
+// Wire a page as soon as its text is parsed. The iframe's load event waits
+// for every font and image, so a slow font host would leave the page on
+// screen but not yet editable. `nav` makes sure that if pages are flipped
+// quickly, only the last one shown gets wired.
+let nav = 0;
+function whenParsed(gen, before, cb){
+  const d = frame.contentDocument;
+  if(gen !== nav) return;
+  if(d && d !== before && d.readyState !== "loading") return cb();
+  setTimeout(()=> whenParsed(gen, before, cb), 25);
+}
+
 function show(i, hash){
   flush();
-  pendingHash = hash || "";
   cur = Math.max(0, Math.min(PAGES.length-1, i));
   pick.value = cur;
   $("prev").disabled = cur === 0;
@@ -343,18 +389,15 @@ function show(i, hash){
   const p = PAGES[cur];
   $("metaTitle").value = p.meta.title || "";
   $("metaDesc").value  = p.meta.description || "";
+  const gen = ++nav, before = frame.contentDocument;
   frame.srcdoc = p.srcdoc;
+  whenParsed(gen, before, ()=>{
+    wire(); applyEdits();
+    const t = hash && frame.contentDocument.getElementById(hash);
+    if(t) t.scrollIntoView({block:"start"});
+  });
   countEdited();
 }
-
-frame.addEventListener("load", ()=>{
-  wire(); applyEdits();
-  if(pendingHash){
-    const t = frame.contentDocument.getElementById(pendingHash);
-    if(t) t.scrollIntoView({block:"start"});
-    pendingHash = "";
-  }
-});
 pick.addEventListener("change", ()=> show(+pick.value));
 document.addEventListener("keydown", e=>{
   if(e.target.closest("input,textarea,select")) return;
@@ -396,10 +439,10 @@ drawer("metaBtn","meta","help");
 function layout(){
   const bannerH = $("offline").hidden ? 0 : $("offline").offsetHeight;
   document.querySelectorAll(".drawer").forEach(d=>{
-    d.style.top = `calc(var(--bar-h) + ${bannerH}px)`;
+    d.style.top = `calc(var(--bar-h) + var(--safe-top) + ${bannerH}px)`;
   });
   const open = [...document.querySelectorAll(".drawer")].find(d=>!d.hidden);
-  stage.style.top = `calc(var(--bar-h) + ${bannerH + (open ? open.offsetHeight : 0)}px)`;
+  stage.style.top = `calc(var(--bar-h) + var(--safe-top) + ${bannerH + (open ? open.offsetHeight : 0)}px)`;
 }
 window.addEventListener("resize", layout);
 

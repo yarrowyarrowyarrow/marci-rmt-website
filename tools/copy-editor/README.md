@@ -11,18 +11,24 @@ keyed by block id so they can be read back and merged into the HTML.
     python3 tools/copy-editor/build_editor.py   # writes pages.json alongside itself
     python3 tools/copy-editor/build_shell.py    # writes copy-editor.html at repo root
 
-`copy-editor.html` is generated and gitignored — it embeds every page plus
-downscaled copies of the assets, so it runs about 1 MB. Publish it as an
-artifact rather than committing it; this repo is served publicly by GitHub
-Pages and the editor is an internal tool.
+`copy-editor.html` is generated and gitignored. It embeds every page plus
+downscaled copies of the assets. Publish it as an artifact (declaring the `db`
+capability) rather than committing it. This repo is served publicly by GitHub
+Pages and the editor is an internal tool; `_config.yml` keeps this folder and
+the copy deck out of the published site.
 
 ## How blocks are identified
 
 `copy-deck.md` at the repo root is the source of block ids. Each `### <id>`
-entry carries the block's current text, its source location, and any review
-note. `build_editor.py` matches that text against the parsed HTML — whitespace
-normalised, inline tags flattened, smallest matching subtree wins — and tags
-the element with `data-copy-id`.
+entry carries the block's current text, its source location (`file:line`), and
+optionally a `NOTE:` (a review flag, shown as a tag in the editor) and a
+`YOURS` line (text already in Marci's own words, shown with a green bar and
+counted toward "In your words").
+
+`build_editor.py` matches each block's text against the parsed HTML (whitespace
+normalised, inline tags flattened) and tags the innermost matching element with
+`data-copy-id`. When the same words appear twice on a page, the deck's line
+number picks the right one.
 
 A block that stops matching (because the HTML changed but the deck didn't, or
 vice versa) is reported as unmatched at build time rather than silently
@@ -33,7 +39,10 @@ mistagged. Keep that count at zero.
 Edits live in the artifact db under `edits/<page-key>` as
 `{blocks: {<block-id>: "new text"}, updatedAt}`. Two keys are reserved:
 `__title` and `__description` hold the page's `<title>` and meta description,
-which are edited in the chrome rather than on the page.
+which are edited in the chrome rather than on the page. An empty string means
+the block was cleared: remove that element from the page.
 
-Read them with the Artifact tool's `read_db` action, then write each block back
-to the element carrying that `data-copy-id`.
+Read them with the `ArtifactData` tool (`list` on the `edits` collection), write
+each block back into the HTML, then update the matching deck entries (new text,
+a `YOURS` line, and drop any `NOTE:` the edit resolved) so the next build
+still matches.

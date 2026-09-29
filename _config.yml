@@ -1,0 +1,7 @@
+# GitHub Pages builds this repo with Jekyll and publishes every file it finds.
+# The copy deck and the copy-editor tooling are for editing the site, not for
+# visitors, so keep them out of the published site.
+exclude:
+  - README.md
+  - copy-deck.md
+  - tools
