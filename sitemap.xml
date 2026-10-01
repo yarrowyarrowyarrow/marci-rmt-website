@@ -1,23 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://marci.mx/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://marci.mx/about.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://marci.mx/services.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://marci.mx/events.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://marci.mx/areas.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://marci.mx/faq.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://marci.mx/contact.html</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://marci.mx/first-visit.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://marci.mx/conditions/tension-headaches.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://marci.mx/conditions/neck-shoulder.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://marci.mx/conditions/low-back-pain.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://marci.mx/conditions/stress-sleep.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://marci.mx/conditions/tmj.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://marci.mx/conditions/frozen-shoulder.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://marci.mx/conditions/sciatica.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://marci.mx/conditions/pregnancy.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://marci.mx/conditions/post-surgical.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://marci.mx/conditions/repetitive-strain.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://marci.mx/conditions/plantar-fasciitis.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://marci.mx/conditions/maintenance.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://marcirmt.ca/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://marcirmt.ca/events.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marcirmt.ca/about.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://marcirmt.ca/faq.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://marcirmt.ca/contact.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>

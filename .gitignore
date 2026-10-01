@@ -1,0 +1,7 @@
+# Generated copy editor — built by tools/copy-editor, published as an artifact.
+# Kept out of the repo so it isn't served publicly by GitHub Pages.
+copy-editor.html
+tools/copy-editor/pages.json
+
+# Python bytecode from running the copy-editor tools
+__pycache__/

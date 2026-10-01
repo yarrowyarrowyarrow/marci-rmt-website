@@ -61,13 +61,23 @@
       return;
     }
 
-    /* Event work is quoted, not booked, so those CTAs stay on the contact
-       form. Tracked as a Book Click so both paths show in one funnel.
+    /* Event work is quoted, not booked, so those CTAs go to the contact
+       page. Tracked as a Book Click so both paths show in one funnel.
        Deliberately does not match in-page anchors like #booking on the FAQ. */
     if (/#book-event$/.test(href)) {
       track('Book Click', {
         placement: placement(link),
         destination: 'event-quote',
+        page: location.pathname
+      });
+      return;
+    }
+
+    /* Email is the only contact route now that the forms are gone. The
+       address itself is not recorded. */
+    if (url.protocol === 'mailto:') {
+      track('Email Click', {
+        placement: placement(link),
         page: location.pathname
       });
       return;
