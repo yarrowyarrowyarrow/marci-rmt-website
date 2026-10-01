@@ -251,7 +251,8 @@ a[data-external]:not([data-copy-id]):hover { outline: 2px dashed #9aa0aa; outlin
     doc = (f"<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\">"
            f"<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">"
            f"<style>{css}{overrides}</style></head><body>{inner}</body></html>")
-    return doc, meta, tagged, mine, missed
+    ids = [el["data-copy-id"] for el in soup.find_all(attrs={"data-copy-id": True})]
+    return doc, meta, ids, mine, missed
 
 
 print("→ building pages")
@@ -259,9 +260,10 @@ pages_data = []
 total_tagged, total_mine, all_missed = 0, 0, []
 
 for key, path, label in PAGES:
-    doc, meta, n, mine, missed = build_page(path, key)
+    doc, meta, ids, mine, missed = build_page(path, key)
+    n = len(ids)
     pages_data.append({"key": key, "label": label, "group": "Pages",
-                       "srcdoc": doc, "meta": meta, "blocks": n, "mine": mine})
+                       "srcdoc": doc, "meta": meta, "blocks": n, "ids": ids, "mine": mine})
     total_tagged += n
     total_mine += len(mine)
     all_missed += missed

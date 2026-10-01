@@ -209,11 +209,12 @@ let db = null, edits = {}, cur = 0, saveTimer = null, pendingPages = new Set();
 function setStatus(s, text){ $("status").dataset.s = s; $("statusText").textContent = text; }
 
 // Blocks on a page that are in Marci's words: already-yours text carried in
-// from the deck, plus anything edited here. Title/description edits live in
-// the chrome and are not page blocks, so they don't count toward this.
+// from the deck, plus anything edited here. Only blocks still on the page
+// count, so a saved edit for a block that has since been removed doesn't;
+// title/description edits live in the chrome and aren't page blocks.
 function yoursOn(p){
-  const ids = new Set(p.mine || []);
-  Object.keys(edits[p.key] || {}).forEach(id => { if(!id.startsWith("__")) ids.add(id); });
+  const known = new Set(p.ids || []), ids = new Set(p.mine || []);
+  Object.keys(edits[p.key] || {}).forEach(id => { if(known.has(id)) ids.add(id); });
   return ids.size;
 }
 

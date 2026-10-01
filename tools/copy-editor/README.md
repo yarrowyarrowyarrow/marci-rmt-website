@@ -42,7 +42,19 @@ Edits live in the artifact db under `edits/<page-key>` as
 which are edited in the chrome rather than on the page. An empty string means
 the block was cleared: remove that element from the page.
 
-Read them with the `ArtifactData` tool (`list` on the `edits` collection), write
-each block back into the HTML, then update the matching deck entries (new text,
-a `YOURS` line, and drop any `NOTE:` the edit resolved) so the next build
-still matches.
+`merge_edits.py` does the merge:
+
+1. Save the edits: `ArtifactData` `list` on the `edits` collection with an
+   `out_dir`. That writes one JSON file per page under `<out_dir>/edits/`.
+   Keep that folder as the backup; fix typos in a copy of it, not the original.
+2. `python3 tools/copy-editor/merge_edits.py <copy-of-edits-folder>`
+   rewrites only the edited elements' text (the rest of each file is
+   untouched), keeps inline markup that still fits (the italic tail of a
+   headline, a `<br>` before it, links and bold around words still present),
+   removes cleared blocks, and marks merged blocks `YOURS` in the deck.
+3. After any hand edits to the pages, run
+   `python3 tools/copy-editor/merge_edits.py --refresh --prune` to update the
+   deck's line numbers and drop blocks that are no longer on the page.
+4. Rebuild (0 unmatched), republish the editor to the same URL, then delete
+   the merged documents from the artifact db so the editor starts clean from
+   the new wording.

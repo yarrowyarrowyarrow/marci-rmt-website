@@ -40,262 +40,259 @@ Premium mobile massage therapy in Edmonton, Alberta. Registered, trauma-informed
 Mobile massage therapy and event chair massage in Edmonton. Registered, trauma-informed, evidence-based. Direct billing available.
 
 ### home-hero-eyebrow
-`index.html:95`
+`index.html:91`
 Mobile & Event Massage · Edmonton, AB
 
 ### home-hero-h1
-`index.html:97`
-Clinical Care, Anywhere.
+`index.html:93`
+YOURS
+Clinical Care Anywhere.
 
 ### home-hero-sub
-`index.html:106`
+`index.html:102`
 NOTE: T5: "Experience excellence without the commute" is brochure-speak, and "excellence" is you grading yourself. The first sentence already does the work.
 Therapeutic, relaxing massage delivered to your home or event. Experience excellence without the commute.
 
 ### home-hero-cta-1
-`index.html:110`
+`index.html:106`
 Book In-Home Session
 
 ### home-hero-cta-2
-`index.html:111`
+`index.html:107`
 Request Event Quote
 
 ### home-hero-footnote
-`index.html:113`
+`index.html:109`
 Direct billing & booking through Jane
 
 ### home-prop-1-label
-`index.html:125`
+`index.html:121`
 01 · Inclusive
 
 ### home-prop-1-body
-`index.html:126`
+`index.html:122`
 YOURS
 I am a safe and respectful practitioner for every body and background.
 
 ### home-prop-2-label
-`index.html:129`
+`index.html:125`
 02 · Educational
 
 ### home-prop-2-body
-`index.html:130`
+`index.html:126`
 YOURS
 Treatment is grounded in research and always includes personalized exercises.
 
 ### home-prop-3-label
-`index.html:133`
+`index.html:129`
 YOURS
 03 · Informed
 
 ### home-prop-3-body
-`index.html:134`
+`index.html:130`
 YOURS
 Care starts with honest conversation and assessment ensuring a proper fit.
 
 ### home-prop-4-label
-`index.html:137`
+`index.html:133`
 04 · Solo & focused
 
 ### home-prop-4-body
-`index.html:138`
+`index.html:134`
 YOURS
 As a solo practitioner, I provide a consistent experience to address your needs every visit.
 
 ### home-about-eyebrow
-`index.html:156`
+`index.html:151`
 About the Therapist
 
 ### home-about-h2
-`index.html:157`
+`index.html:152`
 NOTE: Your About page now opens with "Hi I'm Marci." too, so the greeting appears twice. Worth changing one of them.
 Hi, I'm Marci, a Registered Massage Therapist working in Edmonton.
 
 ### home-about-p1
-`index.html:160`
+`index.html:155`
 YOURS
 I came to massage therapy through a long fascination with anatomy and the belief that proper care can make a difference.
 
 ### home-about-p2
-`index.html:163`
+`index.html:158`
 YOURS
 After graduating from Vicars School of Massage Therapy, I am building my practice around accessibility and evidence-based treatment. I approach every client and session with intention and mindfulness to ensure you get the best care.
 
 ### home-about-cta
-`index.html:166`
+`index.html:161`
 Read the full story
 
 ### home-services-eyebrow
-`index.html:177`
+`index.html:172`
 In-Home Massage
 
 ### home-services-h2
-`index.html:178`
+`index.html:173`
 Massage, brought to your door.
 
 ### home-service-inhome-body
-`index.html:180`
+`index.html:175`
 YOURS
-Relaxing and therapeutic table massage in your home. I bring everything: heated table, scent-free oil, linens, music. You provide the quiet space.
+Relaxing and therapeutic table massage in your home. I bring everything including a heated table, scent-free oil, linens, music. You provide the quiet space.
 
 ### home-service-inhome-finenote
-`index.html:197`
-All prices CAD, GST included. Travel included within 8 km of south-central Edmonton; $25 outside.
+`index.html:192`
+YOURS
+All prices CAD, GST included. Travel is free within 8 km of south-central Edmonton; $25 outside.
 
 ### home-service-inhome-cta
-`index.html:199`
+`index.html:194`
 Book In-Home
 
 ### home-faq-cta
-`index.html:200`
+`index.html:195`
 Read the full FAQ
 
 ### home-signature-eyebrow
-`index.html:205`
+`index.html:200`
 My signature service
 
 ### home-signature-h2
-`index.html:206`
+`index.html:201`
 The neck, scalp & face.
 
 ### home-signature-body
-`index.html:207`
+`index.html:202`
 YOURS
-This is the treatment people remember me by. Where most clinical massage rushes through the cervical spine, suboccipitals, scalp, and face, or skips them entirely, I provide slow and deliberate work rooted in my deep understanding of the anatomy. Available as the focus of a session, or as the closing 20 minutes of any booking.
-
-### home-signature-aside
-`index.html:208`
-NOTE: "Included in any session." is new. I added it because you said the signature work is part of any session when requested. Reword freely.
-Included in any session. Ask for it by name when booking, or just leave a note.
+This is the treatment people remember me by. Where most clinical massage rushes through the scalp and face, or skips them entirely, I provide slow and deliberate work rooted in my deep understanding of the anatomy.
 
 ### home-areas-eyebrow
-`index.html:220`
+`index.html:214`
 Areas Served
 
 ### home-areas-h2
-`index.html:221`
+`index.html:215`
 Edmonton, Central South-West.
 
 ### home-areas-lede
-`index.html:223`
-NOTE: Trimmed: the 400 km festival radius came out along with the other offers.
-In-home appointments are available within an 8 km radius of south-central Edmonton. Event work travels further, up to 150 km for weddings and full days.
+`index.html:217`
+YOURS
+In-home appointments are available within an 8 km radius of south-central Edmonton. For events I travel further, up to 150 km for weddings and full days.
 
 ### home-areas-map-caption
-`index.html:230`
+`index.html:224`
 8 km in-home radius · south-central Edmonton
 
 ### home-areas-included-h4
-`index.html:235`
+`index.html:229`
 In-home, included
 
 ### home-areas-included-body
-`index.html:236`
-Bonnie Doon · Ritchie · Strathcona · Garneau · Hazeldean · Belgravia · Windsor Park · McKernan · Allendale · Queen Alexandra · Riverdale · Cloverdale · Mill Creek · Lansdowne · Grandview Heights · Blue Quill · Aspen Gardens · Greenfield · Malmo Plains.
+`index.html:230`
+YOURS
+Bonnie Doon · Ritchie · Strathcona · Garneau · Hazeldean · Belgravia · Windsor Park · McKernan · Allendale · Queen Alexandra · Riverdale · Cloverdale · Mill Creek · Lansdowne · Grandview Heights · Blue Quill · Aspen Gardens · Greenfield · Malmo Plains · and more
 
 ### home-areas-outside-h4
-`index.html:239`
+`index.html:233`
 Outside the radius
 
 ### home-areas-outside-body
-`index.html:240`
+`index.html:234`
 YOURS
 A flat $25 travel fee applies to approved locations beyond 8 km.
 
-### home-testimonials-eyebrow
-`index.html:250`
-Words from clients
-
 ### home-testimonials-h2
-`index.html:251`
+`index.html:244`
 YOURS
-A growing, glowing record.
+What Clients Say
 
 ### home-treat-eyebrow
-`index.html:289`
+`index.html:282`
 What I treat
 
 ### home-treat-h2
-`index.html:290`
+`index.html:283`
 Common reasons clients book.
 
 ### home-treat-lede
-`index.html:292`
+`index.html:285`
 NOTE: Trimmed: the "click to learn more" sentence went with the condition pages. The list below is plain now. Clear any item you don't want listed. T8: "reasons clients have booked" implies a caseload's worth of pattern.
 While not an exhaustive list, these are some of the reasons clients have booked a massage with me.
 
 ### home-treat-headaches
-`index.html:296`
+`index.html:289`
 Tension headaches
 
-### home-treat-neck
-`index.html:297`
-Neck & shoulder pain
+### home-treat-migraine
+`index.html:290`
+YOURS
+Migraine headaches
 
 ### home-treat-lowback
-`index.html:298`
+`index.html:291`
 Low back pain
 
 ### home-treat-stress
-`index.html:299`
+`index.html:292`
 Stress & sleep
 
 ### home-treat-tmj
-`index.html:300`
+`index.html:293`
 TMJ & jaw tension
 
 ### home-treat-frozen
-`index.html:301`
+`index.html:294`
 Frozen shoulder
 
 ### home-treat-sciatica
-`index.html:302`
-Sciatica & piriformis
+`index.html:295`
+YOURS
+Sciatica
 
-### home-treat-pregnancy
-`index.html:303`
-Pregnancy massage
+### home-treat-neck
+`index.html:296`
+YOURS
+Neck & shoulder pain
 
 ### home-treat-postsurgical
-`index.html:304`
+`index.html:297`
 Post-surgical recovery
 
 ### home-treat-rsi
-`index.html:305`
+`index.html:298`
 Repetitive strain
 
 ### home-treat-plantar
-`index.html:306`
+`index.html:299`
 Plantar fasciitis
 
 ### home-treat-maintenance
-`index.html:307`
+`index.html:300`
 General maintenance
 
 ### home-treat-footnote
-`index.html:310`
+`index.html:303`
 NOTE: Changed "the contact form" to "short email", since the forms are gone. T5: "I'll be honest about whether".
 If you're not sure whether your situation is a fit, send me a short email and I'll be honest about whether massage is the right starting point.
 
 ### home-service-event-label
-`index.html:319`
+`index.html:312`
 Events
 
 ### home-service-event-title
-`index.html:320`
+`index.html:313`
 Event Chair Massage
 
 ### home-service-event-body
-`index.html:321`
+`index.html:314`
 YOURS
-Chair massage for corporate wellness days, weddings, festivals, and community gatherings. I arrive with everything needed, set up in minutes, and keep the queue moving so you can be hands off.
+I offer chair massage for events such as weddings, festivals, community gatherings, and corporate wellness days. I arrive with everything needed, set up in minutes, and keep things moving so you can be hands off.
 
 ### home-service-event-pricing-cta
-`index.html:324`
+`index.html:317`
 NOTE: New button: event prices now live only on the Events page.
 See event pricing
 
 ### home-service-event-cta
-`index.html:325`
+`index.html:318`
 Request Quote
 
 ---
@@ -303,19 +300,20 @@ Request Quote
 # 2. Shared footer (appears on every page; edit it on Home)
 
 ### footer-tagline
-`index.html:338`
+`index.html:331`
+NOTE: Your home headline now reads "Clinical Care Anywhere." with no comma. This tagline (on every page) and the title shown in link previews still have the comma. Worth making them match.
 Clinical Care, Anywhere.
 
 ### footer-blurb
-`index.html:339`
+`index.html:332`
 A solo Registered Massage Therapy practice based in south-central Edmonton, Alberta, Treaty 6 territory.
 
 ### footer-fine-1
-`index.html:365`
+`index.html:358`
 © 2026 Marci.RMT Mobile and Event Massage · Edmonton, AB
 
 ### footer-fine-2
-`index.html:366`
+`index.html:359`
 MTAA Member · Direct billing available · All prices GST included
 
 ---
@@ -341,8 +339,8 @@ Chair massage on-site.
 
 ### events-hero-lede
 `events.html:44`
-NOTE: Trimmed: the venue list ("Festival mainstages. Conference green rooms.") read as a portfolio you don't have yet. What's left starts with "The same", which now has nothing before it to refer to.
-The same trauma-informed care, packaged for groups and adapted to your run-of-show.
+YOURS
+The same clinical care adapted for your group or event.
 
 ### events-howitworks-eyebrow
 `events.html:51`
@@ -354,7 +352,8 @@ Two ways to book.
 
 ### events-howitworks-lede
 `events.html:52`
-Pay-per-minute booths where guests step up and pay individually, or a flat hourly rate where you cover the time and your guests roll through free.
+YOURS
+You can choose to have your guests pay per minute individually, or opt for a flat hourly rate where you cover the time and your guests are free to enjoy.
 
 ### events-booth-label
 `events.html:58`
@@ -368,10 +367,6 @@ Pay-per-minute
 `events.html:60`
 Best for festivals, markets, and venues where guests pay their own way.
 
-### events-booth-footnote
-`events.html:71`
-Tap-to-pay accepted on-site. Receipts auto-emailed.
-
 ### events-hired-label
 `events.html:77`
 Hired
@@ -384,58 +379,56 @@ Flat hourly
 `events.html:79`
 Best for corporate wellness days, weddings, and private parties.
 
-### events-hired-footnote
-`events.html:89`
-NOTE: Trimmed: removed the 400 km festival radius.
-Travel up to 150 km included.
-
-### events-included-eyebrow
-`events.html:99`
-What's included
-
 ### events-included-h2
-`events.html:99`
-A turn-key setup.
+`events.html:98`
+YOURS
+What's Included
 
 ### events-included-lede
-`events.html:100`
-NOTE: T2: clipped two-beat. Fine on its own; part of a pattern in aggregate.
-You pick the corner. I bring the rest.
+`events.html:99`
+YOURS
+You provide the space. I bring everything else.
 
 ### events-included-equipment-h4
-`events.html:103`
-Pro chair, linens, music.
+`events.html:102`
+YOURS
+Massage chair
 
 ### events-included-equipment-body
-`events.html:103`
-Earthlite Vortex chair, scent-free oil, sanitized covers between every guest.
+`events.html:102`
+YOURS
+Sanitized between each client.
 
 ### events-included-logistics-h4
-`events.html:104`
+`events.html:103`
 Waivers handled on-site.
 
 ### events-included-logistics-body
-`events.html:104`
-Digital intake on a tablet, guests sign in 30 seconds. Insurance docs available on request.
+`events.html:103`
+YOURS
+Digital intake on a tablet, guests sign in 30 seconds.
 
 ### events-included-capacity-h4
-`events.html:105`
-~6 guests per hour.
+`events.html:104`
+YOURS
+~5 guests per hour.
 
 ### events-included-capacity-body
-`events.html:105`
-Realistic throughput at 10-minute slots. Plan accordingly for guest counts.
+`events.html:104`
+YOURS
+With 10-minute slots 5 guests per hour is a reasonable pace. Plan accordingly for guest counts.
 
 ### events-cta-h2
-`events.html:112`
+`events.html:111`
 Tell me about your event.
 
 ### events-cta-body
-`events.html:113`
-Send a few details, date, location, guest count, format, and I'll come back within one business day with a quote.
+`events.html:112`
+YOURS
+Send a few details such as date, location, guest count, and format, and I'll get back to you within 3 business days with a quote.
 
 ### events-cta-button
-`events.html:114`
+`events.html:113`
 Request a quote
 
 ---
@@ -464,104 +457,102 @@ Hi I'm Marci.
 ### about-hero-lede
 `about.html:44`
 YOURS
-I am a Vicars-trained Registered Massage Therapist working in central-south-west Edmonton via solo mobile practice.
+I am a mobile Registered Massage Therapist working in Edmonton.
 
 ### about-shortversion-h2
-`about.html:60`
+`about.html:59`
 YOURS
 What brought me to massage
 
 ### about-shortversion-body
-`about.html:61`
+`about.html:60`
 YOURS
-NOTE: Unfinished: you were mid-edit here in the first editor. "…genuine care. graduating I am building…" has lost the start of its second sentence.
-I came to massage therapy through a long fascination with anatomy and a belief that good clinical care should feel not only therapeutic, but also like genuine care. graduating I am building Marci.RMT around what matters most: treatment grounded in research, a setting the client is comfortable with, and exemplary professionalism.
+I came to massage therapy through a long fascination with anatomy and a belief that good clinical care should feel not only therapeutic, but also genuine. What matters most to me in my practice is providing treatment grounded in research, a setting the client is comfortable with, and exemplary professionalism.
 
 ### about-howiwork-h2
-`about.html:63`
+`about.html:62`
 How I work.
 
 ### about-howiwork-p1
-`about.html:64`
+`about.html:63`
 NOTE: T3: "trauma-informed, consent-based, and evidence-led", the bolded triad.
 My care is trauma-informed, consent-based, and evidence-led. I'll ask questions to ensure comfort and that needs are met. I will also always explain what I'm doing, and why, if you want to know.
 
 ### about-howiwork-p2
-`about.html:65`
-NOTE: T1: "adaptable rather than aggressive". T2: "that's exactly my speed" as a closing fragment. T8: "that's what most clients want" claims a client base.
-I keep my pressure adaptable rather than aggressive, partly because that's what most clients want, and partly because protecting my own body is how I get to do this work for the long haul. If you want very deep work, I'll get you there carefully. If you want the kind of session you remember the next morning because of how rested you feel, that's exactly my speed.
+`about.html:64`
+YOURS
+I am able to provide pressure that suits any client from gentle to deep tissue work. For very deep work, I always warm the tissue up first to ensure safety and comfort. I want you to leave each session in a state of rest and recovery.
 
 ### about-howiwork-p3
-`about.html:66`
-NOTE: T3: "Stretches, mobility cues, things to try this week." Also: this says home-care notes are written down at the end of the session; the FAQ says they arrive by email the next morning. Pick one.
-Every session ends with two or three home-care suggestions written down for you. Stretches, mobility cues, things to try this week. The goal is to make the time between sessions as meaningful as the session itself.
+`about.html:65`
+YOURS
+Every session ends with two or three home-care suggestions written down for you such as stretches, strengthening exercises, or mobility cues. The aim of home care is to make the time between sessions as impactful as the massage itself.
 
 ### about-t1d-label
-`about.html:70`
+`about.html:72`
 A note on Type 1 Diabetes
 
 ### about-t1d-h3
-`about.html:71`
-NOTE: T1: assert, then negate the opposite. "It changes how I prepare" alone is stronger and less defensive.
-I live with T1D. It changes how I prepare, never the quality of the work.
+`about.html:73`
+YOURS
+I live with T1D. It changes how I prepare but never the quality of the work.
 
 ### about-t1d-body
-`about.html:72`
-Massage can be strenuous exercise, and exercise can dramatically increase insulin sensitivity. Because my pancreas can't dial insulin output up or down on its own, I manage that with a continuous glucose monitor and carbohydrates I keep close at hand. Occasionally, that means I'll pause a session for 60 seconds to eat something. I'd rather mention it now than have it surprise you.
-
-### about-t1d-emergency
-`about.html:73`
-NOTE: Moved here from the FAQ, which no longer has a T1D section. T1: "Vanishingly unlikely to be needed, but worth saying clearly" is a hedge-then-assert opener.
-Vanishingly unlikely to be needed, but worth saying clearly: if I were ever to become unresponsive, the fastest action is to call 911 and tell them I'm a Type 1 Diabetic experiencing severe hypoglycemia. My emergency contact info is in a small folio in my supply bag.
+`about.html:74`
+YOURS
+Massage can be strenuous exercise, and exercise can dramatically increase insulin sensitivity. Because my pancreas can't dial insulin output up or down on its own, I manage that with a continuous glucose monitor and carbohydrates I keep close at hand. Occasionally, that means I'll pause a session for a few seconds to eat something.
 
 ### about-gender-label
-`about.html:78`
+`about.html:79`
 A note on gender
 
 ### about-gender-h3
-`about.html:79`
+`about.html:80`
 I'm non-binary and use they/them pronouns.
 
 ### about-gender-body
-`about.html:80`
-NOTE: T1: "before you book rather than after". "respect is always mutually assured" is oddly formal for the sentence it's attached to.
-I mention it up front because some people have a clear preference for a male or female therapist, and that's worth knowing before you book rather than after. I'm comfortable working with anyone, and respect is always mutually assured.
+`about.html:81`
+YOURS
+I mention it up front because some people have a clear preference for a male or female therapist, and that's worth knowing before you book rather than after. I'm comfortable working with anyone, and respect is always mutual.
 
 ### about-credentials-h2
-`about.html:83`
+`about.html:84`
 Credentials.
 
 ### about-cred-education
-`about.html:85`
+`about.html:86`
 Vicars School of Massage Therapy, Edmonton
 
 ### about-cred-association
-`about.html:86`
+`about.html:87`
 NOTE: Corrected the name: it's the Massage Therapist Association of Alberta, not "Massage Therapy Association".
 Massage Therapist Association of Alberta (MTAA), in good standing
 
 ### about-cred-insurance
-`about.html:87`
-Professional liability + commercial general liability via MTAA
+`about.html:88`
+YOURS
+Professional liability via MTAA
 
 ### about-cred-registration
-`about.html:88`
-Registered trade name with Alberta · City of Edmonton business licence
+`about.html:89`
+YOURS
+NOTE: In Canada the noun is spelled "licence" (it's what the City of Edmonton calls it); "license" is the verb or the US spelling. Left as you wrote it.
+Registered trade name with Alberta · City of Edmonton business license
 
 ### about-cta-h2
-`about.html:98`
+`about.html:99`
 Ready to try a session?
 
 ### about-cta-body
-`about.html:99`
+`about.html:100`
 First-time clients fill out a short health-history form online before the first appointment. Takes about five minutes.
 
 ### about-cta-book
-`about.html:101`
+`about.html:102`
 Book In-Home
 
 ### about-cta-event
-`about.html:102`
+`about.html:103`
 Event Quote
 
 ---
@@ -582,12 +573,13 @@ Policies & FAQ
 
 ### faq-hero-h1
 `faq.html:58`
-The fine print, in plain language.
+YOURS
+Frequently Asked Questions
 
 ### faq-hero-lede
 `faq.html:59`
-NOTE: T8: "The questions I get most often" implies an inbox history.
-The questions I get most often, and the policies I run my practice by. If something isn't covered here, just ask.
+YOURS
+The questions I get most often. If something isn't covered here, just ask.
 
 ### faq-booking-h2
 `faq.html:69`
@@ -599,8 +591,8 @@ How do I book?
 
 ### faq-booking-how-a
 `faq.html:73`
-NOTE: Changed "Email and phone work too" to "Email works too", since the site lists email only now.
-Scheduling runs through Jane, the practice-management platform used by most Alberta RMTs. The Book button anywhere on this site opens my Jane page, where you can see real availability, pick a session length, and confirm in a couple of minutes. Email works too if you'd rather not book online. A credit card on file holds the booking; you're not charged until after the session.
+YOURS
+Scheduling runs through Jane, the practice-management platform used by most Alberta RMTs. The Book button anywhere on this site opens my Jane page, where you can see real availability, pick a session length, and confirm in a couple of minutes. Email works too if you'd rather not book online. You'll need to enter a credit card to hold an appointment however you won't be charged until after the session. For events please email me.
 
 ### faq-booking-forms-q
 `faq.html:76`
@@ -612,8 +604,8 @@ Everything happens in Jane before your first appointment, so no paperwork eats i
 
 ### faq-booking-forms-p2
 `faq.html:78`
-NOTE: T1: "only confirm what has changed rather than starting over."
-Both are stored in Jane's encrypted, Canadian-hosted records, so returning clients only confirm what has changed rather than starting over. If you'd prefer paper, tell me when you book and I'll bring printed copies to complete before we begin, which adds about ten minutes to the visit.
+YOURS
+Both are stored in Jane's encrypted, Canadian-hosted records, so you only need to do this process once and let me know of any changes going forward.
 
 ### faq-booking-pay-q
 `faq.html:81`
@@ -621,7 +613,8 @@ How do I pay?
 
 ### faq-booking-pay-a
 `faq.html:82`
-Tap-to-pay on a portable terminal at the end of the session, e-transfer, or in most cases direct billing to your insurance. Receipts are emailed automatically.
+YOURS
+Pay through Jane, e-transfer, or in most cases direct billing to your insurance. Receipts are emailed automatically.
 
 ### faq-booking-gift-q
 `faq.html:85`
@@ -650,7 +643,8 @@ What kind of space do I need to provide?
 
 ### faq-space-what-a
 `faq.html:100`
-A private room, large enough for the table (6' × 3') with a foot of clearance on all sides. The room should be quiet for the duration of the appointment with kids and pets settled elsewhere and electronics turned off.
+YOURS
+A private room, large enough for the table (6' × 3'). The room should be quiet for the duration of the appointment with kids and pets settled elsewhere and electronics turned off.
 
 ### faq-first-wear-q
 `faq.html:103`
@@ -658,8 +652,8 @@ What should I wear?
 
 ### faq-first-wear-a
 `faq.html:104`
-NOTE: Trimmed: dropped "Most clients prefer underwear on…". It contradicted the old First Visit page and claimed a pattern you can't know yet.
-You'll undress to your level of comfort and lie under a sheet and blanket. Only the body part being worked on is uncovered at any time.
+YOURS
+You'll undress to your level of comfort and lie under a sheet and blanket. Only the body part being worked on is undraped at any time.
 
 ### faq-first-talk-q
 `faq.html:107`
@@ -685,8 +679,8 @@ What happens after the session?
 
 ### faq-after-p1
 `faq.html:116`
-NOTE: Moved from the old First Visit page. T1: "They're optional, not homework." See the note on About's home-care paragraph: the two describe different timing.
-Two or three home-care suggestions will be in your inbox by the next morning: stretches, mobility cues, or rest recommendations based on what we worked on. They're optional, not homework.
+YOURS
+Two or three home-care suggestions will be in your inbox by the next morning such as stretches, strengthening exercises, mobility cues, or rest recommendations based on what we worked on.
 
 ### faq-after-p2
 `faq.html:117`
@@ -711,8 +705,8 @@ What's the cancellation policy?
 
 ### faq-cancel-policy-a
 `faq.html:131`
-NOTE: T5: "genuine emergencies."
-Twenty-four hours, please. Cancellations or reschedules made less than 24 hours before the appointment are billed a $75 fee to the card on file. No-shows are billed at full price. Both fees can be waived once for genuine emergencies.
+YOURS
+Twenty-four hours, please. Cancellations or reschedules made less than 24 hours before the appointment are billed a $75 fee to the card on file. No-shows are billed at full price. Both fees can be waived for emergencies on a case by case basis.
 
 ### faq-cancel-sick-q
 `faq.html:134`
@@ -720,8 +714,8 @@ What if I'm sick?
 
 ### faq-cancel-sick-a
 `faq.html:135`
-NOTE: T1: "I'd rather see you when you're well than treat through something that should be in bed."
-Please reschedule, even at the last minute. Illness, including colds, fevers, or anything contagious, always waives the cancellation fee. I'd rather see you when you're well than treat through something that should be in bed.
+YOURS
+Please reschedule, even at the last minute. Illness, including colds, fevers, or anything contagious, always waives the cancellation fee. I'd rather see you when you're well than risk the wellness of either of us.
 
 ### faq-insurance-h2
 `faq.html:141`
@@ -733,8 +727,8 @@ Which insurers do you direct-bill?
 
 ### faq-insurance-which-a
 `faq.html:145`
-NOTE: Check this list. GreenShield is its own insurer, not TELUS Health's old name, and providerConnect is GreenShield's billing portal. So "(formerly Greenshield)" is wrong, and this probably wants to name GreenShield separately. I left it for you since it depends on your billing setup.
-Alberta Blue Cross, TELUS Health (formerly Greenshield), Sun Life / Lumino, Canada Life, Manulife, and most plans accessible through ProviderConnect. I'm an MTAA-registered RMT, which is the credential nearly all Canadian insurers require.
+YOURS
+Alberta Blue Cross, TELUS Health, Sun Life / Lumino, Canada Life, Manulife, and most plans accessible through ProviderConnect. I'm an MTAA-registered RMT, which is the credential nearly all Canadian insurers require.
 
 ### faq-insurance-owe-q
 `faq.html:148`
@@ -742,76 +736,33 @@ Will I owe anything at the end of the session?
 
 ### faq-insurance-owe-a1
 `faq.html:149`
-NOTE: Trimmed: removed "Most clients with massage benefits walk away owing zero", a billing-history claim. T6: "the short version".
-It depends on your plan, but the short version: I check your coverage and submit the claim live at the end of the session, then charge only any remaining balance.
+YOURS
+It depends on your plan: I check your coverage and submit the claim at the end of the session, then charge only any remaining balance.
 
 ### faq-insurance-owe-a2
 `faq.html:150`
-What might leave a small balance: a per-visit cap below my session rate (e.g. some plans cover $80 / visit; you'd owe the difference) or an annual benefit that's been used up.
-
-### faq-insurance-owe-a3
-`faq.html:151`
-If you want zero surprises, ask me to pre-check your coverage before your appointment. With your written consent I can usually verify the same day you book.
+YOURS
+If there is a per-visit cap below my session rate (e.g. some plans cover $80 per visit) or an annual benefit that's been used up, you'd owe the difference. You are responsible for knowing what your insurance covers.
 
 ### faq-insurance-nodirect-q
-`faq.html:154`
+`faq.html:153`
 What if my plan doesn't direct-bill?
 
 ### faq-insurance-nodirect-a
-`faq.html:155`
+`faq.html:154`
 You'll get a fully itemized receipt with my registration number and association. Submit it to your provider for reimbursement. Receipts are emailed within an hour of the session.
 
-### faq-safety-h2
-`faq.html:161`
-Safety & boundaries.
-
-### faq-safety-stranger-q
-`faq.html:164`
-Is it safe to have a stranger come to my home?
-
-### faq-safety-stranger-a1
-`faq.html:165`
-NOTE: T2: "It's a fair question to ask" is the validating-fragment pattern.
-It's a fair question to ask, especially as a first-time client. A few practical points:
-
-### faq-safety-stranger-a2
-`faq.html:166`
-NOTE: T1: "under my own name, not a brand alias."
-I'm a Registered Massage Therapist in good standing with the MTAA, verifiable through their public registry. I carry professional liability and commercial general liability insurance, with documents available on request. I run a registered Alberta business, hold a City of Edmonton licence, and operate under my own name, not a brand alias.
-
-### faq-safety-stranger-a4
-`faq.html:167`
-NOTE: Trimmed: removed "Many clients also like to know", a claim about client feedback. T1: "It's a small thing but it cuts both ways."
-I share my live location with a trusted contact during every appointment. It's a small thing but it cuts both ways: safer for you to know I'm tracked, safer for me too.
-
-### faq-safety-scope-q
-`faq.html:170`
-What's your scope of practice?
-
-### faq-safety-scope-a
-`faq.html:171`
-NOTE: T3: "diagnose conditions, prescribe medications, or perform medical adjustments", then "physiotherapist, chiropractor, or family doctor."
-I'm trained to assess and treat soft-tissue and joint dysfunction within the scope of an Alberta Registered Massage Therapist. I do not diagnose conditions, prescribe medications, or perform medical adjustments. For those, I'll refer you to the right professional. I'm happy to coordinate with your physiotherapist, chiropractor, or family doctor if you'd like.
-
-### faq-safety-pregnancy-q
-`faq.html:174`
-Do you treat pregnancy?
-
-### faq-safety-pregnancy-a
-`faq.html:175`
-Yes, after the first trimester, with your provider's clearance. I use side-lying and pillow-supported positions; the table never compresses the abdomen.
-
 ### faq-cta-h
-`faq.html:179`
+`faq.html:158`
 Still have a question?
 
 ### faq-cta-body
-`faq.html:180`
-NOTE: Changed "Email or text" to "Email me", since the site lists email only now.
-Email me. I respond within one business day.
+`faq.html:159`
+YOURS
+Email me. I respond within three business days.
 
 ### faq-cta-button
-`faq.html:181`
+`faq.html:160`
 Get in touch
 
 ---
@@ -850,8 +801,8 @@ Email
 
 ### contact-email-body
 `contact.html:55`
-NOTE: New: replaces the three forms.
-For event quotes, gift cards, or anything else, email me. I respond within one business day.
+YOURS
+For event quotes, gift cards, or anything else, email me. I will respond within three business days.
 
 ### contact-email-event
 `contact.html:56`
@@ -859,15 +810,15 @@ NOTE: New.
 For an event quote, include the date, location, guest count, and format.
 
 ### contact-side-basedin-label
-`contact.html:69`
+`contact.html:60`
 Based in
 
 ### contact-side-basedin-body
-`contact.html:70`
+`contact.html:61`
 South-central Edmonton, AB
 
 ### contact-side-basedin-treaty
-`contact.html:71`
+`contact.html:62`
 Treaty 6 territory.
 
 ---
@@ -894,3 +845,4 @@ Lost? Let's find you.
 `404.html:43`
 NOTE: "A few places that almost certainly do" is a wry aside. Keep it if it sounds like you.
 The page you're looking for has moved or never existed. A few places that almost certainly do:
+
