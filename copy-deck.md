@@ -301,8 +301,8 @@ Request Quote
 
 ### footer-tagline
 `index.html:331`
-NOTE: Your home headline now reads "Clinical Care Anywhere." with no comma. This tagline (on every page) and the title shown in link previews still have the comma. Worth making them match.
-Clinical Care, Anywhere.
+YOURS
+Clinical Care Anywhere.
 
 ### footer-blurb
 `index.html:332`
@@ -536,8 +536,7 @@ Professional liability via MTAA
 ### about-cred-registration
 `about.html:89`
 YOURS
-NOTE: In Canada the noun is spelled "licence" (it's what the City of Edmonton calls it); "license" is the verb or the US spelling. Left as you wrote it.
-Registered trade name with Alberta · City of Edmonton business license
+Registered trade name with Alberta · City of Edmonton business licence
 
 ### about-cta-h2
 `about.html:99`
