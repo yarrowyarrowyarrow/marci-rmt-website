@@ -471,6 +471,11 @@ a.treat-cell:hover::after { opacity: 1; transform: translateX(3px); color: var(-
      or a wide image push the whole row past the edge of the screen. */
   [style*="grid-template-columns"] > * { min-width: 0; }
 
+  /* A sticky column (the About photo) only works beside the text it follows.
+     Once the columns stack, it would ride down the page on top of the copy,
+     so on phones it scrolls with everything else. */
+  [style*="position: sticky"] { position: static !important; }
+
   /* Short label/value rows read worse stacked, so keep these two-up. */
   [style*="140px 1fr"] { grid-template-columns: 140px 1fr !important; }
 
